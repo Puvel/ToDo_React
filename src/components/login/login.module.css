@@ -1,0 +1,10 @@
+.login-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px) or (orientation: portrait) {
+    .login-wrapper {}
+}
