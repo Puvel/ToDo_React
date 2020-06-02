@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Login from '../components/login/Login';
+import axios from 'axios';
 
 const initialState = {
   login: '',
@@ -7,20 +8,43 @@ const initialState = {
 
 export const LoginPage = () => {
   const [state, setstate] = useState(initialState);
+  const [isAuth, setAuth] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    const getToken = async () => {
+      try {
+        const data = await axios.post('https://questify.goit.co.ua/api/login', {
+          nickname: state.login,
+        });
+        console.log(data);
+        setAuth(data);
+        const quotes = await axios.get(
+          'https://questify.goit.co.ua/api/quests'
+        );
+
+        console.log(quotes);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getToken();
   };
 
   const handleChange = ({ target: { name, value } }) => {
     setstate((prev) => ({ ...prev, [name]: value }));
   };
-
   return (
-    <Login
-      handleSubmit={handleSubmit}
-      handleChange={handleChange}
-      state={state}
-    />
+    <>
+      {isAuth ? (
+        <h1>HOME PAGE</h1>
+      ) : (
+        <Login
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          state={state}
+        />
+      )}
+    </>
   );
 };
