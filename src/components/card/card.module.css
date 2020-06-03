@@ -1,0 +1,15 @@
+.todosSectionItem {
+  width: 284px;
+  height: 264px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: beige;
+  background-color: rgb(138, 70, 138);
+  border-radius: 10px;
+}
+
+.todosSectionItem:not(:last-child) {
+  margin-bottom: 22px;
+}
