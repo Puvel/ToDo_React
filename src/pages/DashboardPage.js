@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { tokenSlice } from '../redux/token/tokenReducer';
 import TodoList from '../components/todoList/TodoList';
+import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 
 const tasks = [
   {
@@ -217,7 +218,9 @@ const DashboardPage = () => {
     <>
       <button onClick={handleLogOut}>Exit</button>
       <TodoList title="TODAY" tasks={tasks} />
-      <TodoList title="TOMORROW" tasks={tasks1} visible />
+      <TodoList title="TOMORROW" tasks={tasks1} />
+      <TodoList title="DONE" tasks={tasks1} visible />
+      <CreateQuestButton />
     </>
   );
 };

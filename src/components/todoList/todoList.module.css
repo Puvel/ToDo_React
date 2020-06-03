@@ -5,7 +5,7 @@
 }
 .borderWrap {
   position: relative;
-  border-top: 2px dashed #ffffff;
+  border-top: 2px dashed #f2f3f7;
   margin-bottom: 20px;
 }
 .borderWrapVis {
@@ -16,7 +16,7 @@
 .todosSectionWrapVis {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: #f2f3f7;
   position: absolute;
   top: -8px;
 }
@@ -26,7 +26,7 @@
   align-items: center;
   position: absolute;
   top: -6px;
-  background-color: white;
+  background-color: #f2f3f7;
 }
 
 .todosSectionTitle {
@@ -34,7 +34,7 @@
   font-size: 15px;
   line-height: 11px;
   color: #282828;
-  font-family: 'Helvetica Neue Cyr';
+  font-family: 'HelveticaNeueCyr', Arial, Helvetica, sans-serif;
   font-weight: 300;
 }
 
@@ -42,7 +42,7 @@
   text-align: center;
   line-height: 11px;
   color: #588696;
-  font-family: 'Helvetica Neue Cyr';
+  font-family: 'HelveticaNeueCyr', Arial, Helvetica, sans-serif;
 }
 
 .todosSectionBtn {
