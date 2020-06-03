@@ -19,7 +19,7 @@ const Login = ({ handleSubmit, handleChange, state }) => {
                 </p>
                 <input
                   className={styles.input}
-                  name="login"
+                  name="nickname"
                   type="text"
                   placeholder="|"
                   onChange={handleChange}

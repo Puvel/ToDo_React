@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
 
 export const useRoute = token => {
   if (!token) {
@@ -13,7 +14,7 @@ export const useRoute = token => {
   }
   return (
     <Switch>
-      <Route exact path="/dashboard" component={<h1>home page</h1>} />
+      <Route exact path="/dashboard" component={DashboardPage} />
       <Redirect to="/dashboard" />
     </Switch>
   );
