@@ -1,9 +1,12 @@
-import React from 'react';
-import { LoginPage } from './pages/LoginPage';
+import React from "react";
+import { LoginPage } from "./pages/LoginPage";
+import { useRoute } from "./router";
 
 function App() {
   const isAuth = true;
-  return <>{isAuth ? <LoginPage /> : <h1>Hello Pasha</h1>}</>;
+  const routing = useRoute(isAuth);
+  return { routing };
+  // return <>{isAuth ? <LoginPage /> : <h1>Hello Pasha</h1>}</>;
 }
 
 export default App;
