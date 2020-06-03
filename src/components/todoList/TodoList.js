@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './todoList.module.css';
-import Card from '../card/Card';
+import { Card } from '../card/Card';
 
 class TodoList extends Component {
   state = { isShow: true };

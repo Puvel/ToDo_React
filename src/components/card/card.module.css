@@ -1,15 +1,86 @@
-.todosSectionItem {
-  width: 284px;
+.cardMain {
+  width: 285px;
   height: 264px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: beige;
-  background-color: rgb(138, 70, 138);
   border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  list-style: none;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
-.todosSectionItem:not(:last-child) {
+.cardMain:not(:last-child) {
   margin-bottom: 22px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-family: 'HelveticaNeueCyr';
+  color: rgb(40, 40, 40);
+  font-weight: bold;
+  line-height: 1.556;
+  text-align: center;
+}
+
+.cardDate {
+  font-size: 15px;
+  font-family: 'HelveticaNeueCyr';
+  color: rgb(185, 195, 200);
+  line-height: 0.733;
+  padding-right: 5px;
+}
+.textCont {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 45px;
+}
+
+.cardSelect {
+  margin-left: 15px;
+  width: 120px;
+  font-size: 15px;
+  font-family: 'HelveticaNeueCyr';
+  color: rgb(185, 195, 200);
+  border: none;
+}
+.cardStarIcon {
+  margin-right: 15px;
+}
+.hardLevelContainer {
+  display: flex;
+  justify-content: space-between;
+  outline: none;
+}
+
+.hardLevelContainer div {
+  border: none;
+  box-shadow: none;
+}
+.hardLevelContainer > div > div:nth-child(3) {
+  border: 1px solid hsl(0, 0%, 80%);
+}
+.hardLevelContainer > div > div {
+  padding: 0;
+  margin: 0;
+}
+.hardLevelContainer > div > div:nth-child(3) > div {
+  padding: 0;
+  margin: 0;
+}
+
+/* .card_cardStarIcon:hover{
+    fill:red;
+
+} */
+
+.cardStarIcon:hover {
+  filter: drop-shadow(0px 3px 7px 0px rgba(121, 215, 254, 0.43));
+  filter: url(../../assets/images/icons/star.svg) invert(0.3) sepia(0)
+    saturate(1) hue-rotate(0deg) brightness(1);
+  opacity: 0.3;
+}
+
+.cardStyleStar:hover {
+  box-shadow: 0px 3px 7px 0px rgba(121, 215, 254, 0.43);
 }
