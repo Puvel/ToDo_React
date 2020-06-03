@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -10,6 +11,5 @@ function App() {
   console.log(token);
   const routing = useRoute(token);
   return routing;
-}
 
 export default App;
