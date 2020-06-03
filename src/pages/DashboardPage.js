@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+import { tokenSlice } from '../redux/token/tokenReducer';
 import TodoList from '../components/todoList/TodoList';
 
 const tasks = [
@@ -204,11 +206,20 @@ const tasks1 = [
   },
 ];
 
-const DashboardPage = () => (
-  <>
-    <TodoList title="TODAY" tasks={tasks} />
-    <TodoList title="TOMORROW" tasks={tasks1} visible />
-  </>
-);
+const DashboardPage = () => {
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(tokenSlice.actions.clearToken());
+  };
+
+  return (
+    <>
+      <button onClick={handleLogOut}>Exit</button>
+      <TodoList title="TODAY" tasks={tasks} />
+      <TodoList title="TOMORROW" tasks={tasks1} visible />
+    </>
+  );
+};
 
 export default DashboardPage;
