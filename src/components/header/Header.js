@@ -1,13 +1,12 @@
-import React from "react";
-import style from "./header.module.css";
-import logoSvg from "../../assets/images/logo/logoTry.png";
+import React from 'react';
+import style from './header.module.css';
+import logoSvg from '../../assets/images/logo/logoTry.png';
 // import thropySvg from "../../assets/images/icons/trophy.svg";
-import logOutSvg from "../../assets/images/icons/logout.svg";
+import logOutSvg from '../../assets/images/icons/logout.svg';
 
-function Header({ nickname = "Ghore" }) {
+function Header({ nickname = 'Ghore', handleLogOut }) {
+  const nickNameSlice = [...nickname[0]];
 
-    const nickNameSlice = [...nickname[0]]
-   
   return (
     <>
       <header className={style.headerContainer}>
@@ -27,15 +26,15 @@ function Header({ nickname = "Ghore" }) {
               </li>
             </ul>
             <div className={style.headerChellenge}>
-                {/* <p className = { style.headerChellengeHover}>You've got new challenge</p> */}
+              {/* <p className = { style.headerChellengeHover}>You've got new challenge</p> */}
               {/* <img
                 className={style.headerChellengeSvg}
                 src={thropySvg}
                 alt="Chellenge"
             /> */}
             </div>
-            <button className={style.buttonLogOut}>
-              <img className = {style.buttonSvg} src={logOutSvg} alt="logOut"  />
+            <button onClick={handleLogOut} className={style.buttonLogOut}>
+              <img className={style.buttonSvg} src={logOutSvg} alt="logOut" />
             </button>
           </div>
         </div>
