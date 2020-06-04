@@ -4,27 +4,24 @@ import styles from './card.module.css';
 import chroma from 'chroma-js';
 import starIcon from '../../assets/images/icons/star.svg';
 import fireIcon from '../../assets/images/icons/fire.svg';
-
 const colourOptions = [
-  { value: 'hard', label: 'Hard', color: '#db0837' },
-  { value: 'normal', label: 'Normal', color: '#fc842c' },
+  { value: 'hard', label: 'Hard', color: '#DB0837' },
+  { value: 'normal', label: 'Normal', color: '#FC842C' },
   { value: 'easy', label: 'Easy', color: '#00875A' },
 ];
 const categoryOptions = [
-  { value: 'stuff', label: 'Stuff' },
-  { value: 'learning', label: 'Learning' },
-  { value: 'health', label: 'Health' },
-  { value: 'work', label: 'Work' },
-  { value: 'leisure', label: 'Leisure' },
-  { value: 'productivity', label: 'Productivity' },
-  { value: 'social', label: 'Social' },
-  { value: 'sport', label: 'Sport' },
+  { value: 'family', label: 'Family', color: 'rgb(248,229,212)' },
+  { value: 'learning', label: 'Learning', color: 'rgb(252, 242, 183)' },
+  { value: 'health', label: 'Health', color: 'rgb(204, 247, 255)' },
+  { value: 'work', label: 'Work', color: 'rgb(211, 246, 206)' },
+  { value: 'leisure', label: 'Leisure', color: 'rgb(238, 216, 242)' },
+  { value: 'productivity', label: 'Productivity', color: 'rgb(209, 225, 246)' },
+  { value: 'social', label: 'Social', color: 'rgb(233, 192, 203)' },
+  { value: 'sport', label: 'Sport', color: 'rgb(186, 241, 229)' },
 ];
-
 const dot = (color = '#ccc') => ({
   alignItems: 'center',
   display: 'flex',
-
   ':before': {
     backgroundColor: color,
     borderRadius: 10,
@@ -35,7 +32,6 @@ const dot = (color = '#ccc') => ({
     width: 10,
   },
 });
-
 export const Card = () => {
   return (
     <li className={styles.cardMain}>
@@ -46,18 +42,19 @@ export const Card = () => {
           defaultValue={colourOptions[0]}
           styles={colourStyles}
         />
-        <img
-          className={styles.cardStarIcon}
-          src={starIcon}
-          width="16px"
-          height="auto"
-          alt="star"
-        />
+        <div className={styles.starContainer}>
+          <img
+            className={styles.cardStarIcon}
+            src={starIcon}
+            width="16px"
+            height="auto"
+            alt="star"
+          />
+        </div>
       </div>
       <h3 className={styles.cardTitle}>Submit report</h3>
       <div className={styles.textCont}>
         <p className={styles.cardDate}>Today 7:30</p>
-        {/* <button className={styles.cardStyleStar}></button> */}
         <img
           className={styles.cardFireIcon}
           src={fireIcon}
@@ -66,13 +63,19 @@ export const Card = () => {
           alt="star"
         />
       </div>
-      <Select options={categoryOptions} className={styles.cardSelectCategory} />
+      <div className={styles.kek}>
+        <Select
+          options={categoryOptions}
+          className={styles.cardSelectCategory}
+          defaultValue={categoryOptions[5]}
+          styles={backgroundcolourStyles}
+        />
+      </div>
     </li>
   );
 };
-
 const colourStyles = {
-  control: styles => ({ ...styles, backgroundColor: 'white' }),
+  control: styles => ({ ...styles }),
   // option: (styles, { data,isSelected}) =>
   //   ({ ...styles, ...dot(data.color) }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -92,10 +95,9 @@ const colourStyles = {
         : isSelected
         ? chroma.contrast(color, 'white')
           ? 'white'
-          : 'black'
+          : '#ccc'
         : data.color,
       cursor: isDisabled ? 'not-allowed' : 'default',
-
       ':active': {
         ...styles[':active'],
         backgroundColor:
@@ -103,8 +105,46 @@ const colourStyles = {
       },
     };
   },
-
   input: styles => ({ ...styles, ...dot() }),
   placeholder: styles => ({ ...styles, ...dot() }),
   singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
+};
+const col = (color = '#ccc') => ({
+  padding: '10px',
+  paddingRight: '20px',
+  backgroundColor: color,
+  boxShadow: `0 10px ${color})`,
+  borderRadius: '0 60px 60px 0',
+});
+const backgroundcolourStyles = {
+  control: styles => ({ ...styles, backgroundColor: 'color' }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    const color = chroma(data.color);
+    return {
+      ...styles,
+      backgroundColor: isDisabled
+        ? null
+        : isSelected
+        ? data.color
+        : isFocused
+        ? color.css()
+        : null,
+      color: isDisabled
+        ? '#ccc'
+        : isSelected
+        ? chroma.contrast(color, '#ccc')
+          ? 'black'
+          : '#ccc'
+        : color,
+      cursor: isDisabled ? 'not-allowed' : 'default',
+      ':active': {
+        ...styles[':active'],
+        backgroundColor:
+          !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
+      },
+    };
+  },
+  input: styles => ({ ...styles, ...col() }),
+  placeholder: styles => ({ ...styles, ...col() }),
+  singleValue: (styles, { data }) => ({ ...styles, ...col(data.color) }),
 };

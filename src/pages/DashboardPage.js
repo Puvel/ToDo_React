@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { tokenSlice } from '../redux/token/tokenReducer';
@@ -209,6 +209,7 @@ const tasks1 = [
 ];
 
 const DashboardPage = () => {
+  const [isShow, setIsShow] = useState(true);
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
@@ -220,7 +221,13 @@ const DashboardPage = () => {
       <Header handleLogOut={handleLogOut} />
       <TodoList title="TODAY" tasks={tasks} />
       <TodoList title="TOMORROW" tasks={tasks1} />
-      <TodoList title="DONE" tasks={tasks1} visible />
+      <TodoList
+        title="DONE"
+        tasks={tasks1}
+        visible
+        isShow={isShow}
+        handelShow={prev => setIsShow({ isShow: !prev.isShow })}
+      />
       <CreateQuestButton />
     </>
   );
