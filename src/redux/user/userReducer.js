@@ -6,9 +6,13 @@ export const userSlice = createSlice({
     nickName: "",
   },
   reducers: {
-      getUser: (state, { payload }) => ({
+    getUser: (state, { payload }) => {
+      console.log(payload);
+      return {
+        ...state,
         nickname: payload,
-      }),
+      };
+    },
     clearUser: () => ({
       email: null,
       userId: null,

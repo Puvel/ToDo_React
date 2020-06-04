@@ -1,32 +1,70 @@
 import axios from "axios";
 import { tokenSlice } from "./tokenReducer";
 import { userSlice } from "../user/userReducer";
+import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
 
 const getData = data => data.data.data;
 const getUser = data => getData(data).user;
 const getToken = data => getUser(data)._id;
+const getTasks = data => getData(data).tasks;
+
+const isToday = date => {
+  const today = new Date();
+  return (
+    date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  );
+};
+
+const isTomorrow = date => {
+  const today = new Date();
+  return (
+    date.getDate() === today.getDate() + 1 &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  );
+};
 
 export const signInUser = params => async (dispatch, getState) => {
   try {
-    console.log("dasdsasad");
     const data = await axios.post(
       "https://develop-questify.goit.co.ua/api/auth",
       params,
     );
-    console.log(data);
     const status = data.status === 200;
-    // console.log(status);
     const tokenValue = getToken(data);
     const nickName = getUser(data).nickname;
-    console.log(nickName);
-    // const user = data.data.user;
-    console.log(tokenValue);
+    const tasks = getTasks(data);
+    const dashBoard = {
+      today: [],
+      tomorrow: [],
+      allRest: [],
+      done: [],
+      challange: [],
+    };
+
+    const reduxTasks = tasks.map(task => {
+      console.log(task);
+      if (task.done) {
+        dashBoard.done.push(task)
+      } else {
+        const actualDate = new Date(task.dueDate);
+        if (isToday(actualDate)) {
+          dashBoard.today.push(task);
+        } else if (isTomorrow(actualDate)) {
+          dashBoard.tomorrow.push(task);
+        } else {
+          dashBoard.allRest.push(task);
+        }
+      }
+    });
+
     if (status) {
-      console.log(data.data.message);
-      console.log(tokenValue);
-      dispatch(tokenSlice.actions.getToken({ token: tokenValue }));
       dispatch(userSlice.actions.getUser(nickName));
-      //   dispatch(userSlice.actions.getUser({ id: user._id, email: user.email }));
+      console.log(data.data.message);
+      dispatch(tokenSlice.actions.getToken({ token: tokenValue }));
+      dispatch(dashBoardSlice.actions.getTasks(dashBoard));
     }
   } catch (err) {
     console.log(err);
