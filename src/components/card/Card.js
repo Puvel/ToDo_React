@@ -18,6 +18,7 @@ const categoryOptions = [
   { value: "productivity", label: "Productivity", color: "rgb(209, 225, 246)" },
   { value: "social", label: "Social", color: "rgb(233, 192, 203)" },
   { value: "sport", label: "Sport", color: "rgb(186, 241, 229)" },
+  { value: "STUFF", label: "Stuff", color: "rgb(32, 76, 229)" },
 ];
 
 const getGroup = {
