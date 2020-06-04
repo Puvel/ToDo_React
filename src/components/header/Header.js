@@ -1,10 +1,12 @@
-import React from 'react';
-import style from './header.module.css';
-import logoSvg from '../../assets/images/logo/logoTry.png';
+import React from "react";
+import style from "./header.module.css";
+import logoSvg from "../../assets/images/logo/logoTry.png";
+import { useSelector } from "react-redux";
 // import thropySvg from "../../assets/images/icons/trophy.svg";
-import logOutSvg from '../../assets/images/icons/logout.svg';
+import logOutSvg from "../../assets/images/icons/logout.svg";
 
-function Header({ nickname = 'Ghore', handleLogOut }) {
+function Header({ handleLogOut }) {
+  const nickname = useSelector(state => state.user.nickname);
   const nickNameSlice = [...nickname[0]];
 
   return (
