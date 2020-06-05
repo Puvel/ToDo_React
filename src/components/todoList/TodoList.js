@@ -24,17 +24,16 @@ const TodoList = ({
             )}
           </div>
         </div>
-        {tasks.length > 0 ? (
-          isShow && (
+        {isShow &&
+          (tasks.length > 0 ? (
             <ul className={styles.todosSectionList}>
               {tasks.map(task => (
                 <Card key={task._id} task={task} />
               ))}
             </ul>
-          )
-        ) : (
-          <h3 className={styles.notifyText}>No quests or challenges</h3>
-        )}
+          ) : (
+            <h3 className={styles.notifyText}>No quests or challenges</h3>
+          ))}
       </div>
     </section>
   );

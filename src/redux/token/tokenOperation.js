@@ -1,7 +1,7 @@
-import axios from "axios";
-import { tokenSlice } from "./tokenReducer";
-import { userSlice } from "../user/userReducer";
-import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
+import axios from 'axios';
+import { tokenSlice } from './tokenReducer';
+import { userSlice } from '../user/userReducer';
+import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
 
 const getData = data => data.data.data;
 const getUser = data => getData(data).user;
@@ -29,7 +29,7 @@ const isTomorrow = date => {
 export const signInUser = params => async (dispatch, getState) => {
   try {
     const data = await axios.post(
-      "https://develop-questify.goit.co.ua/api/auth",
+      'https://questify.goit.co.ua/api/login',
       params,
     );
     const status = data.status === 200;
@@ -47,7 +47,7 @@ export const signInUser = params => async (dispatch, getState) => {
     const reduxTasks = tasks.map(task => {
       console.log(task);
       if (task.done) {
-        dashBoard.done.push(task)
+        dashBoard.done.push(task);
       } else {
         const actualDate = new Date(task.dueDate);
         if (isToday(actualDate)) {

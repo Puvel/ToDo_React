@@ -21,7 +21,13 @@
   line-height: 1.556;
   text-align: center;
   margin-top: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
 .cardDate {
   font-size: 15px;
   font-family: 'HelveticaNeueCyr';
