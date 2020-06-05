@@ -66,7 +66,7 @@ const initialState = {
 
 export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
   const dispatch = useDispatch();
-  const [onEdit, setEdit] = useState(true);
+  const [onEdit, setEdit] = useState(false);
   const [state, setState] = useState({ _id, dueDate, name, difficulty, group });
 
   // edit card function

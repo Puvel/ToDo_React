@@ -1,4 +1,6 @@
 import axios from "axios";
+import * as helpers from "../../helpers/functions";
+import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
 
 export const editCard = ({ _id, dueDate, name, difficulty, group }) => async (
   dispatch,
@@ -11,13 +13,21 @@ export const editCard = ({ _id, dueDate, name, difficulty, group }) => async (
       { dueDate, name, difficulty, group },
       { headers: { "content-type": "application/json" } },
     );
-    const status = data.data.status === "success";
-    const tokenValue = data.data.token;
-    const user = data.data.user;
+    const status = data.status === 201;
     console.log(data);
     // set data to redux according to today or tomorrow ....
     if (status) {
-      // dispatch(tokenSlice.actions.getToken({ token: tokenValue }));
+      console.log(data.data.message);
+      const actualDate = new Date(data.data.quest.dueDate);
+      console.log(helpers.isToday(actualDate));
+      const dispatchByDate = () => {
+        if (helpers.isToday(actualDate)) {
+          console.log("sadasdas");
+
+          dispatch(dashBoardSlice.actions.updateToday(data.data.quest));
+        }
+      };
+      dispatchByDate();
       // dispatch(userSlice.actions.getUser({ id: user._id, email: user.email }));
     }
   } catch (err) {
