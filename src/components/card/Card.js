@@ -76,7 +76,7 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
     console.log(state);
   };
 
-  const handleEditCard = () => {};
+  
 
   const hours = new Date(dueDate);
   const actualHours = hours.getHours();
@@ -85,12 +85,14 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
     <li className={styles.cardMain}>
       <div className={styles.hardLevelContainer}>
         <Select
+          isDisabled={onEdit ? false : true}
           name="difficulty"
           value={getDifficulty[difficulty]}
           options={colourOptions}
           defaultValue={colourOptions[0]}
           styles={colourStyles}
           className={styles.cardSelect}
+          // onChange={}
         />
         <div className={styles.starContainer}>
           <img
@@ -124,6 +126,7 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
       </div>
       <div className={styles.kek}>
         <Select
+          isDisabled={onEdit ? false : true}
           name="group"
           value={getGroup[group]}
           options={categoryOptions}
