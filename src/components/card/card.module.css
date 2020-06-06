@@ -28,6 +28,7 @@
   color: rgb(185, 195, 200);
   line-height: 0.733;
   padding-right: 5px;
+  
 }
 .textCont {
   display: flex;
@@ -44,7 +45,8 @@
   color: rgb(185, 195, 200);
 }
 .cardStarIcon {
-  margin-right: 15px;
+  margin-right: 30px;
+  margin-top: 5px;
 }
 .hardLevelContainer {
   display: flex;
@@ -109,26 +111,155 @@ starContainer:hover {
   background-color: transparent;
 }
 .kek > div > div > div:last-child > span {
-  display: none;
+   display: none; 
+  position: absolute; 
 }
 .kek > div > div > div:last-child > div > svg {
-  display: none;
+  display: none; 
+   position: absolute; 
+
 }
 .cardSelectCategory > div:nth-child(3) {
   border: 1px solid hsl(0, 0%, 80%);
 }
-.hardLevelContainer div {
-  border: none;
-  box-shadow: none;
+
+
+.challengeCardMain{
+    border-radius: 10px;
+    background-color: rgb(32, 57, 90);
+    box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+    width: 285px;
+    height: 264px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+    list-style: none;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  
+
+.challengeHardLevelContainer{
+    display: flex;
+    justify-content: space-between;
+    outline: none;
 }
-.hardLevelContainer > div > div {
-  padding: 0;
-  margin: 0;
+.challengeHardLevelContainer div {
+    border: none;
+    box-shadow: none;
+  }
+  .challengeHardLevelContainer > div > div:nth-child(3) {
+    border: 1px solid hsl(0, 0%, 80%);
+    position: absolute;
+    top: -10px;
+    left: -10px;
+  }
+  .challengeHardLevelContainer > div > div {
+    padding: 0;
+    margin: 0;
+  }
+  .challengeHardLevelContainer > div > div:nth-child(3) > div {
+    padding: 0;
+    margin: 0;
+  }
+  challengeHardLevelContainer:hover {
+    background-color: #00d7ff;
+    box-shadow: 15px 15px 15px 15px #00d7ff;
+  }
+
+  .challengeHardLevelContainer > div>div>div{
+    background-color: rgb(32, 57, 90);
+    padding-left: 10px;
+
+  }
+  .challengeHardLevelContainer>div >div>div>div>div:nth-child(1){
+   color: rgb(185, 195, 200);
+  }
+
+  .challengeHardLevelContainer >div > div > div > div > div:last-child {
+    background-color: transparent;
+  }
+  .challengeHardLevelContainer >div > div > div > div:last-child > span {
+    display: none;
+  }
+  .challengeHardLevelContainer >div > div > div > div:last-child > div > svg {
+    display: none;
+  }
+  .cardSelectCategory > div:nth-child(3) {
+    border: 1px solid hsl(0, 0%, 80%);
+  }
+  .challenge{
+    font-size: 13px;
+    font-family: "HelveticaNeueCyr";
+    color: rgb(123, 138, 164);
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 0.846;
+    padding-top: 30px;
+    text-align: center;
+  }
+  .challengrCardTitle{
+    font-size: 18px;
+    font-family: 'HelveticaNeueCyr';
+    color:white;
+    font-weight: bold;
+    line-height: 1.556;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    
+  }
+ .container{
+     display: flex;
+     justify-content: space-between;
+     /* align-items: flex-end; */
+     
+ }
+ .imgCont{
+     display: flex;
+     justify-content: space-between;
+ 
+
+ }
+ .imgCont span{
+    background-color: rgb(123, 138, 164); 
+    margin-top: 4px;
+    margin-bottom: 10px;
 }
-.hardLevelContainer > div > div:nth-child(3) > div {
-  padding: 0;
-  margin: 0;
-}
-.cardSelectCategory div {
-  border: none;
-}
+ .btn{
+     border:none;
+     background-color: transparent;
+     font-size: 15px;
+     font-family: "HelveticaNeueCyr";
+     color: rgb(0, 215, 255);
+     text-transform: uppercase;
+    line-height: 0.733;
+    padding-right: 25px;
+    padding-left: 20px;
+ }
+ .btnDel{
+     background-color:transparent;
+     border: none;
+     padding-right: 12px;
+ }
+  .sel{
+      width:160px
+  }
+  .sel > div > div > div > div:last-child {
+    background-color: transparent;
+  }
+  .sel > div > div > div:last-child > span {
+    display: none; 
+  }
+  .sel > div > div > div:last-child > div > svg {
+    display: none; 
+  }
+ .delite{
+    fill: #da0837;
+    border:rgb(32, 57, 90);
+    background-color:rgb(32, 57, 90) ;
+
+ }
+ .delite:hover{
+    fill: #aa273b;
+ }
+

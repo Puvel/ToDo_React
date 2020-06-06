@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './todoList.module.css';
 import { Card } from '../card/Card';
+import {ChallengeCard} from '../card/ChallengeCard'
 
 const TodoList = ({
   title = '',
@@ -28,8 +29,10 @@ const TodoList = ({
           isShow && (
             <ul className={styles.todosSectionList}>
               {tasks.map(task => (
+                <>
                 <Card key={task._id} task={task} />
-              ))}
+                <ChallengeCard key={task._id} task={task}/>
+                </>))}
             </ul>
           )
         ) : (

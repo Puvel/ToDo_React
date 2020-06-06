@@ -2,8 +2,11 @@ import React from "react";
 import Select from "react-select";
 import styles from "./card.module.css";
 import chroma from "chroma-js";
-import starIcon from "../../assets/images/icons/star.svg";
-import fireIcon from "../../assets/images/icons/fire.svg";
+import trophyIcon from "../../assets/images/icons/trophy.svg";
+import deleteIcon from "../../assets/images/icons/delete.svg";
+import test from "../../assets/images/icons/right-arrow.svg";
+
+
 const colourOptions = [
   { value: "Hard", label: "Hard", color: "#DB0837" },
   { value: "Normal", label: "Normal", color: "#FC842C" },
@@ -35,6 +38,7 @@ const getGroup = {
 const dot = (color = "#ccc") => ({
   alignItems: "center",
   display: "flex",
+  backgroundColor:"rgb(32, 57, 90)",
   ":before": {
     backgroundColor: color,
     borderRadius: 10,
@@ -52,33 +56,17 @@ const getDifficulty = {
   Hard: colourOptions[0],
 };
 
-// {task: {…}}
-// task:
-// createdAt: "2020-06-04T17:27:10.291Z"
-// difficulty: "Easy"
-// done: false
-// dueDate: "2020-06-04T20:20:18.840Z"
-// group: "STUFF"
-// isPriority: false
-// isQuest: true
-// name: " "
-// updatedAt: "2020-06-04T17:27:10.291Z"
-// userId: "5ed7c9bfde92424316c37d90"
-// __v: 0
-// _id: "5ed92eeecb7192196562d047"
-// __proto__: Object
-// key: (...)
-// get key: ƒ ()
 
-export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
+export const ChallengeCard = ({ task: { _id, dueDate, name, difficulty, group } }) => {
   console.log(_id);
 
   const hours = new Date(dueDate);
   const actualHours = hours.getHours();
   const actualMinutes = hours.getMinutes();
   return (
-    <li className={styles.cardMain}>
-      <div className={styles.hardLevelContainer}>
+    <li className={styles.challengeCardMain}>
+      <div className={styles.challengeHardLevelContainer}>
+      <div className={styles.selectContainer}>
         <Select
           value={getDifficulty[difficulty]}
           options={colourOptions}
@@ -86,30 +74,26 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
           styles={colourStyles}
           className={styles.cardSelect}
         />
+    </div>
         <div className={styles.starContainer}>
           <img
             className={styles.cardStarIcon}
-            src={starIcon}
+            src={trophyIcon}
             width="16px"
             height="auto"
             alt="star"
           />
         </div>
       </div>
-      <h3 className={styles.cardTitle}>{name}</h3>
+      <h4 className={styles.challenge}>challenge</h4>
+      <h3 className={styles.challengrCardTitle}>{name}</h3>
       <div className={styles.textCont}>
         <p className={styles.cardDate}>
-          {actualHours}:{actualMinutes}
+          by :{actualHours}:{actualMinutes}
         </p>
-        <img
-          className={styles.cardFireIcon}
-          src={fireIcon}
-          width="16px"
-          height="auto"
-          alt="star"
-        />
       </div>
-      <div className={styles.kek}>
+      <div className={styles.container}>
+      <div className={styles.sel}>
         <Select
           value={getGroup[group]}
           options={categoryOptions}
@@ -118,11 +102,28 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
           styles={backgroundcolourStyles}
         />
       </div>
+        <div className={styles.imgCont}>
+        <button className={styles.btnDel}>
+          <svg
+            className={styles.delite}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </button>
+           <span class=" css-1okebmr-indicatorSeparator"></span>
+          <button className={styles.btn}>START</button>
+          </div>
+      </div>
     </li>
   );
 };
 const colourStyles = {
-  control: styles => ({ ...styles }),
+  control: styles => ({ ...styles,color:"red"}),
   // option: (styles, { data,isSelected}) =>
   //   ({ ...styles, ...dot(data.color) }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
