@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Select from "react-select";
+import { editCard } from "../../redux/dashBoard/cardOperation";
 import styles from "./card.module.css";
 import chroma from "chroma-js";
 import starIcon from "../../assets/images/icons/star.svg";
@@ -18,6 +20,10 @@ const categoryOptions = [
   { value: "productivity", label: "Productivity", color: "rgb(209, 225, 246)" },
   { value: "social", label: "Social", color: "rgb(233, 192, 203)" },
   { value: "sport", label: "Sport", color: "rgb(186, 241, 229)" },
+<<<<<<< HEAD
+=======
+  { value: "Stuff", label: "Stuff", color: "rgb(32, 76, 229)" },
+>>>>>>> 9a7ab361840db0c51751f3eb1b8830d469de3cb0
 ];
 
 const getGroup = {
@@ -52,26 +58,28 @@ const getDifficulty = {
   Hard: colourOptions[0],
 };
 
-// {task: {…}}
-// task:
-// createdAt: "2020-06-04T17:27:10.291Z"
-// difficulty: "Easy"
-// done: false
-// dueDate: "2020-06-04T20:20:18.840Z"
-// group: "STUFF"
-// isPriority: false
-// isQuest: true
-// name: " "
-// updatedAt: "2020-06-04T17:27:10.291Z"
-// userId: "5ed7c9bfde92424316c37d90"
-// __v: 0
-// _id: "5ed92eeecb7192196562d047"
-// __proto__: Object
-// key: (...)
-// get key: ƒ ()
+const initialState = {
+  name: "",
+  group: "",
+  difficulty: "",
+  dueDate: "",
+  isPriority: "",
+  done: "",
+};
 
 export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
-  console.log(_id);
+  const dispatch = useDispatch();
+  const [onEdit, setEdit] = useState(false);
+  const [state, setState] = useState({ _id, dueDate, name, difficulty, group });
+
+  // edit card function
+
+  const handleChange = ({ target: { name, value } }) => {
+    setState(prev => ({ ...prev, [name]: value }));
+    console.log(state);
+  };
+
+  
 
   const hours = new Date(dueDate);
   const actualHours = hours.getHours();
@@ -80,11 +88,14 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
     <li className={styles.cardMain}>
       <div className={styles.hardLevelContainer}>
         <Select
+          isDisabled={onEdit ? false : true}
+          name="difficulty"
           value={getDifficulty[difficulty]}
           options={colourOptions}
           defaultValue={colourOptions[0]}
           styles={colourStyles}
           className={styles.cardSelect}
+          // onChange={}
         />
         <div className={styles.starContainer}>
           <img
@@ -96,7 +107,14 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
           />
         </div>
       </div>
-      <h3 className={styles.cardTitle}>{name}</h3>
+      <input
+        name="name"
+        className={onEdit ? styles.inputTitleEdit : styles.inputTitle}
+        value={state.name}
+        onChange={handleChange}
+        disabled={onEdit ? false : true}
+      />
+      {/* <h3 className={styles.cardTitle}>{name}</h3> */}
       <div className={styles.textCont}>
         <p className={styles.cardDate}>
           {actualHours}:{actualMinutes}
@@ -111,6 +129,8 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
       </div>
       <div className={styles.kek}>
         <Select
+          isDisabled={onEdit ? false : true}
+          name="group"
           value={getGroup[group]}
           options={categoryOptions}
           className={styles.cardSelectCategory}
@@ -118,6 +138,20 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
           styles={backgroundcolourStyles}
         />
       </div>
+      <button
+        onClick={() => {
+          setEdit(!onEdit);
+        }}>
+        x
+      </button>
+      <button
+        onClick={() => {
+          setEdit(!onEdit);
+          console.log(state);
+          dispatch(editCard(state));
+        }}>
+        💘
+      </button>
     </li>
   );
 };

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { tokenSlice } from "../redux/token/tokenReducer";
-import Header from "../components/header/Header";
-import TodoList from "../components/todoList/TodoList";
-import CreateQuestButton from "../components/createQuestButton/CreateQuestButton";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { tokenSlice } from '../redux/token/tokenReducer';
+import Header from '../components/header/Header';
+import TodoList from '../components/todoList/TodoList';
+import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 
 const DashboardPage = () => {
   const today = useSelector(state => state.dashboard.today);
@@ -29,7 +29,7 @@ const DashboardPage = () => {
         tasks={done}
         visible
         isShow={isShow}
-        handelShow={prev => setIsShow({ isShow: !prev.isShow })}
+        handelShow={() => setIsShow(!isShow)}
       />
       <CreateQuestButton />
     </>

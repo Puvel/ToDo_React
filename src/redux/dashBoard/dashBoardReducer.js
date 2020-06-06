@@ -10,8 +10,28 @@ export const dashBoardSlice = createSlice({
     challenge: [],
   },
   reducers: {
-    getTasks: (state, { payload }) => ({
-      ...payload,
-    }),
+    getTasks: (state, { payload }) => {
+      console.log("state", state);
+      return {
+        ...payload,
+      };
+    },
+    updateToday: (state, { payload }) => {
+      console.log(payload._id);
+      const actualToday = state.today.map(item => {
+        if (item._id === payload._id) {
+          console.log("yest takoy varik");
+          console.log(item);
+          return payload;
+        } else {
+          return item;
+        }
+      });
+      console.log(actualToday);
+      return {
+        ...state,
+        today: actualToday,
+      };
+    },
   },
 });
