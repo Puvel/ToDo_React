@@ -14,7 +14,6 @@ export const LoginPage = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log(state);
     dispatch(signInUser(state));
   };
 

@@ -41,7 +41,7 @@ function Header({ handleLogOut }) {
                   <animate
                     begin="0.6s"
                     dur="2.5s"
-                    values="#15395a; #ffffff; #15395a"
+                    values="#15395a; #ffffff; #1  5395a"
                     keyTimes="0; 0.5; 1"
                     attributeName="fill"
                     repeatCount="indefinite"

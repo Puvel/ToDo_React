@@ -7,7 +7,6 @@ import { useRoute } from './router';
 function App() {
   const token = useSelector(state => state.token);
   const isAuth = true;
-  console.log(token);
   const routing = useRoute(token);
   return routing;
 }

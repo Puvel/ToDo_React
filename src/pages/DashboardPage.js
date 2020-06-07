@@ -37,6 +37,7 @@ const DashboardPage = () => {
         userId: "5edcb4fc94684d2asdasd131fe0f00",
         __v: 0,
         _id: "5edcb4fc94684d2131fe0f02",
+        onCreate: true,
       }),
     );
   };
