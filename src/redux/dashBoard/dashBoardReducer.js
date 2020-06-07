@@ -11,14 +11,12 @@ export const dashBoardSlice = createSlice({
   },
   reducers: {
     createTask: (state, { payload }) => {
-      console.log(payload);
       return { ...state, today: [payload, ...state.today] };
     },
     deleteTask: (state, { payload }) => {
       return { ...state };
     },
     updateTasks: (state, { payload }) => {
-      console.log("state", state);
       return {
         ...payload,
       };

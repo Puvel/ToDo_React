@@ -27,7 +27,6 @@ const isTomorrow = date => {
 };
 
 export const signInUser = params => async (dispatch, getState) => {
-  console.log(params);
   try {
     const data = await axios.post(
       "https://questify.goit.co.ua/api/login",
@@ -46,7 +45,6 @@ export const signInUser = params => async (dispatch, getState) => {
     };
 
     const reduxTasks = tasks.map(task => {
-      console.log(task);
       if (task.done) {
         dashBoard.done.push(task);
       } else {
@@ -60,7 +58,6 @@ export const signInUser = params => async (dispatch, getState) => {
         }
       }
     });
-    console.log(dashBoard);
     if (status) {
       dispatch(userSlice.actions.getUser(nickName));
       console.log(data.data.message);

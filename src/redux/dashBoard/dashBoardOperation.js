@@ -29,7 +29,6 @@ export const updateTasks = params => async (dispatch, getState) => {
       "https://questify.goit.co.ua/api/login",
       userName,
     );
-    console.log(data);
     const status = data.status === 200;
     const tasks = getTasks(data);
     const dashBoard = {
@@ -55,9 +54,7 @@ export const updateTasks = params => async (dispatch, getState) => {
         }
       }
     });
-    console.log(dashBoard);
     if (status) {
-      console.log(data.data.message);
       dispatch(dashBoardSlice.actions.updateTasks(dashBoard));
     }
   } catch (err) {

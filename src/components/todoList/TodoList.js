@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './todoList.module.css';
-import { Card } from '../card/Card';
-import { ChallengeCard } from '../card/ChallengeCard';
+import React from "react";
+import styles from "./todoList.module.css";
+import { Card } from "../card/Card";
+import { ChallengeCard } from "../card/ChallengeCard";
 
 const TodoList = ({
   title = "",
@@ -29,7 +29,6 @@ const TodoList = ({
           (tasks.length > 0 ? (
             <ul className={styles.todosSectionList}>
               {tasks.map(task => {
-                console.log('task', task);
                 if (task.isQuest) {
                   return <Card key={task._id} task={task} />;
                 } else {

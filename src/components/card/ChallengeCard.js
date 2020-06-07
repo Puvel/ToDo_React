@@ -52,7 +52,6 @@ const getDifficulty = {
 export const ChallengeCard = ({
   task: { _id, dueDate, name, difficulty, group },
 }) => {
-  console.log(_id);
   const hours = new Date(dueDate);
   const actualHours = hours.getHours();
   const actualMinutes = hours.getMinutes();
