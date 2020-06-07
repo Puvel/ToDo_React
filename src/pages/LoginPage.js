@@ -16,23 +16,6 @@ export const LoginPage = () => {
     evt.preventDefault();
     console.log(state);
     dispatch(signInUser(state));
-    // const getToken = async () => {
-    //   try {
-    //     const data = await axios.post("https://questify.goit.co.ua/api/login", {
-    //       nickname: state.login,
-    //     });
-    //     console.log(data);
-    //     setAuth(data);
-    //     const quotes = await axios.get(
-    //       "https://questify.goit.co.ua/api/quests",
-    //     );
-
-    //     console.log(quotes);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // getToken();
   };
 
   const handleChange = ({ target: { name, value } }) => {

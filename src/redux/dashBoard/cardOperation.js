@@ -1,6 +1,7 @@
-import axios from 'axios';
-import * as helpers from '../../helpers/functions';
-import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
+import axios from "axios";
+import * as helpers from "../../helpers/functions";
+import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
+import { updateTasks } from "../dashBoard/dashBoardOperation";
 
 export const editCard = ({ _id, dueDate, name, difficulty, group }) => async (
   dispatch,
@@ -26,6 +27,26 @@ export const editCard = ({ _id, dueDate, name, difficulty, group }) => async (
         }
       };
       dispatchByDate();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteCard = ({ _id }) => async (dispatch, getState) => {
+  const state = getState();
+  console.log("state", state.user.nickname);
+  const nickname = state.user.nickname;
+  try {
+    const data = await axios.delete(
+      `https://questify.goit.co.ua/api/quests/${_id}`,
+    );
+    const status = data.status === 201;
+    console.log(data);
+    if (status) {
+      console.log(data.data.message);
+      dispatch(updateTasks(nickname));
+      // dispatch(dashBoardSlice.actions.deleteTask(_id));
     }
   } catch (err) {
     console.log(err);

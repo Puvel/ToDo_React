@@ -4,7 +4,7 @@ import { Card } from '../card/Card';
 import { ChallengeCard } from '../card/ChallengeCard';
 
 const TodoList = ({
-  title = '',
+  title = "",
   tasks = [],
   visible = null,
   isShow = true,

@@ -43,6 +43,8 @@
   padding-right: 20px;
   border: none;
   outline: none;
+  margin: 0 auto;
+  display: block;
 }
 
 .inputTitleEdit {
@@ -61,6 +63,8 @@
   outline: none;
   border: none;
   border-bottom: 1px solid black;
+  margin: 0 auto;
+  display: block;
 }
 
 .cardDate {
@@ -222,7 +226,7 @@ starContainer:hover {
   margin: 0;
 }
 challengeHardLevelContainer:hover {
-  background-color: #00d7ff;
+  background-color: rgb(0, 217, 255);
   box-shadow: 15px 15px 15px 15px #00d7ff;
 }
 .challengeHardLevelContainer > div > div > div {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
-import { editCard } from '../../redux/dashBoard/cardOperation';
+import { editCard, deleteCard } from '../../redux/dashBoard/cardOperation';
 import styles from './card.module.css';
 import chroma from 'chroma-js';
 import starIcon from '../../assets/images/icons/star.svg';
@@ -102,11 +102,9 @@ export const Card = ({
     console.log('value', value);
     setState(prev => ({ ...prev, [name]: value }));
   };
-  const handleChecked = () => {
-    setState(prev => {
-      console.log(prev);
-      return { ...prev, isPriority: !isPriority };
-    });
+
+  const handleSelectChange = name => ({ value }) => {
+    setState(prev => ({ ...prev, [name]: value }));
   };
 
   const hours = new Date(dueDate);
@@ -130,9 +128,9 @@ export const Card = ({
           defaultValue={colourOptions[0]}
           styles={colourStyles}
           className={styles.cardSelect}
-          onChange={prev => handleSelected(prev)}
+          onChange={handleSelectChange('difficulty')}
         />
-        <button className={styles.starContainer} onChange={handleChecked}>
+        <button className={styles.starContainer}>
           <svg
             className="starIconCl"
             xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +173,7 @@ export const Card = ({
         <Select
           isDisabled={onEdit ? false : true}
           name="group"
-          value={getGroup[state.group.toLowerCase()]}
+          value={getDifficulty[state.group]}
           options={categoryOptions}
           className={styles.cardSelectCategory}
           defaultValue={categoryOptions[5]}
@@ -226,7 +224,11 @@ export const Card = ({
           </button>
         )}
 
-        <button className={`${styles.Btn} ${styles.deliteBtn}`}>
+        <button
+          className={`${styles.Btn} ${styles.deliteBtn}`}
+          onClick={() => {
+            dispatch(deleteCard(state));
+          }}>
           <svg
             className={styles.delit}
             xmlns="http://www.w3.org/2000/svg"
