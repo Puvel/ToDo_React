@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-import { editCard } from "../../redux/dashBoard/cardOperation";
+import { editCard, deleteCard } from "../../redux/dashBoard/cardOperation";
 import styles from "./card.module.css";
 import chroma from "chroma-js";
 import starIcon from "../../assets/images/icons/star.svg";
@@ -66,17 +66,18 @@ const initialState = {
 
 export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
   const dispatch = useDispatch();
-  const [onEdit, setEdit] = useState(false);
+  const [onEdit, setEdit] = useState(true);
   const [state, setState] = useState({ _id, dueDate, name, difficulty, group });
 
   // edit card function
 
   const handleChange = ({ target: { name, value } }) => {
     setState(prev => ({ ...prev, [name]: value }));
-    console.log(state);
   };
 
-  
+  const handleSelectChange = name => ({ value }) => {
+    setState(prev => ({ ...prev, [name]: value }));
+  };
 
   const hours = new Date(dueDate);
   const actualHours = hours.getHours();
@@ -87,12 +88,12 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
         <Select
           isDisabled={onEdit ? false : true}
           name="difficulty"
-          value={getDifficulty[difficulty]}
+          value={getDifficulty[state.difficulty]}
           options={colourOptions}
           defaultValue={colourOptions[0]}
           styles={colourStyles}
           className={styles.cardSelect}
-          // onChange={}
+          onChange={handleSelectChange("difficulty")}
         />
         <div className={styles.starContainer}>
           <img
@@ -128,11 +129,12 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
         <Select
           isDisabled={onEdit ? false : true}
           name="group"
-          value={getGroup[group]}
+          value={getDifficulty[state.group]}
           options={categoryOptions}
           className={styles.cardSelectCategory}
           defaultValue={categoryOptions[5]}
           styles={backgroundcolourStyles}
+          onChange={handleSelectChange("group")}
         />
       </div>
       <button
@@ -144,10 +146,15 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
       <button
         onClick={() => {
           setEdit(!onEdit);
-          console.log(state);
           dispatch(editCard(state));
         }}>
         💘
+      </button>
+      <button
+        onClick={() => {
+          dispatch(deleteCard(state));
+        }}>
+        🕳
       </button>
     </li>
   );
