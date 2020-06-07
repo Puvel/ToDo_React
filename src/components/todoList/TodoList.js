@@ -28,7 +28,6 @@ const TodoList = ({
           (tasks.length > 0 ? (
             <ul className={styles.todosSectionList}>
               {tasks.map(task => {
-                console.log(task);
                 return <Card key={task._id} task={task} />;
               })}
             </ul>

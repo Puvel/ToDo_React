@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-import { editCard } from "../../redux/dashBoard/cardOperation";
+import { editCard, deleteCard } from "../../redux/dashBoard/cardOperation";
 import styles from "./card.module.css";
 import chroma from "chroma-js";
 import starIcon from "../../assets/images/icons/star.svg";
@@ -149,6 +149,12 @@ export const Card = ({ task: { _id, dueDate, name, difficulty, group } }) => {
           dispatch(editCard(state));
         }}>
         💘
+      </button>
+      <button
+        onClick={() => {
+          dispatch(deleteCard(state));
+        }}>
+        🕳
       </button>
     </li>
   );

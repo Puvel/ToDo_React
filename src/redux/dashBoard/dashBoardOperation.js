@@ -1,11 +1,7 @@
 import axios from "axios";
-import { tokenSlice } from "./tokenReducer";
-import { userSlice } from "../user/userReducer";
 import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
 
 const getData = data => data.data.data;
-const getUser = data => getData(data).user;
-const getToken = data => getUser(data)._id;
 const getTasks = data => getData(data).tasks;
 
 const isToday = date => {
@@ -26,16 +22,15 @@ const isTomorrow = date => {
   );
 };
 
-export const signInUser = params => async (dispatch, getState) => {
-  console.log(params);
+export const updateTasks = params => async (dispatch, getState) => {
   try {
+    const userName = { nickname: params };
     const data = await axios.post(
       "https://questify.goit.co.ua/api/login",
-      params,
+      userName,
     );
+    console.log(data);
     const status = data.status === 200;
-    const tokenValue = getToken(data);
-    const nickName = getUser(data).nickname;
     const tasks = getTasks(data);
     const dashBoard = {
       today: [],
@@ -62,10 +57,8 @@ export const signInUser = params => async (dispatch, getState) => {
     });
     console.log(dashBoard);
     if (status) {
-      dispatch(userSlice.actions.getUser(nickName));
       console.log(data.data.message);
-      dispatch(tokenSlice.actions.getToken({ token: tokenValue }));
-      dispatch(dashBoardSlice.actions.getTasks(dashBoard));
+      dispatch(dashBoardSlice.actions.updateTasks(dashBoard));
     }
   } catch (err) {
     console.log(err);
