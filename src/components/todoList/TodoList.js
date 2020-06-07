@@ -1,9 +1,9 @@
-import React from 'react';
-import styles from './todoList.module.css';
-import { Card } from '../card/Card';
+import React from "react";
+import styles from "./todoList.module.css";
+import { Card } from "../card/Card";
 
 const TodoList = ({
-  title = '',
+  title = "",
   tasks = [],
   visible = null,
   isShow = true,
@@ -27,9 +27,10 @@ const TodoList = ({
         {isShow &&
           (tasks.length > 0 ? (
             <ul className={styles.todosSectionList}>
-              {tasks.map(task => (
-                <Card key={task._id} task={task} />
-              ))}
+              {tasks.map(task => {
+                console.log(task);
+                return <Card key={task._id} task={task} />;
+              })}
             </ul>
           ) : (
             <h3 className={styles.notifyText}>No quests or challenges</h3>

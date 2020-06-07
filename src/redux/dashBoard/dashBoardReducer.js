@@ -10,6 +10,10 @@ export const dashBoardSlice = createSlice({
     challenge: [],
   },
   reducers: {
+    createTask: (state, { payload }) => {
+      console.log(payload);
+      return { ...state, today: [payload, ...state.today] };
+    },
     getTasks: (state, { payload }) => {
       console.log("state", state);
       return {
@@ -20,7 +24,6 @@ export const dashBoardSlice = createSlice({
       console.log(payload._id);
       const actualToday = state.today.map(item => {
         if (item._id === payload._id) {
-          console.log("yest takoy varik");
           console.log(item);
           return payload;
         } else {
