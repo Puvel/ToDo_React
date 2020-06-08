@@ -116,20 +116,7 @@
   padding: 0;
   margin: 0;
 }
-starContainer:hover {
-  background-color: #00d7ff;
-  box-shadow: 15px 15px 15px 15px #00d7ff;
-}
-.cardStarIcon:hover {
-  filter: drop-shadow(15px 15px 15px 15px #00d7ff);
-  filter: url(../../assets/images/icons/star.svg) invert(0.3) sepia(0)
-    saturate(1) hue-rotate(0deg) brightness(1);
-  opacity: 0.3;
-  box-shadow: 15px 15px 15px 15px #00d7ff;
-}
-.cardStyleStar:hover {
-  box-shadow: 0px 3px 7px 0px #00d7ff;
-}
+
 .starIcon {
   fill: #b9c3c8;
 }
@@ -137,8 +124,16 @@ starContainer:hover {
 .starContainer:hover .starIcon {
   fill: #00d7ff;
 }
+.starIconActiv {
+  fill: #00d7ff;
+}
+
+/* .starContainer:hover .starIconActiv {
+  fill: #b9c3c8;
+} */
 
 .starContainer {
+  margin-right: 24px;
   background-color: transparent;
   border: none;
 }

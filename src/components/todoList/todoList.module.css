@@ -80,6 +80,15 @@
   .todosSectionContainer {
     width: 933px;
   }
+  .todosSectionList {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1279px) {
+  .todosSectionList > li:not(:nth-child(3n)) {
+    margin-right: calc(100% / 3 - 285px);
+  }
 }
 
 @media (min-width: 1280px) {
