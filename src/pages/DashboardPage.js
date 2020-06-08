@@ -10,7 +10,6 @@ import CreateQuestButton from "../components/createQuestButton/CreateQuestButton
 
 const today = new Date().toISOString();
 
-
 const DashboardPage = () => {
   const today = useSelector(state => state.dashboard.today);
   const tomorrow = useSelector(state => state.dashboard.tomorrow);
@@ -31,15 +30,15 @@ const DashboardPage = () => {
         createdAt: "2020-06-07T09:35:56.563Z",
         difficulty: "Easy",
         done: false,
-        dueDate: today,
+        dueDate: "",
         group: "Productivity",
         isPriority: false,
         isQuest: true,
         name: "Create an account",
         updatedAt: "2020-06-07T09:35:56.563Z",
         userId: "5edcb4fc94684d2asdasd131fe0f00",
+        _id:'5edcb4fc94684d2asdasd131fe0f00dsadassd',
         __v: 0,
-        _id: "5edcb4fc94684d2131fe0f02",
         onCreate: true,
       }),
     );
