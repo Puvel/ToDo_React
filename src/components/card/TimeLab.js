@@ -31,7 +31,6 @@ const TimeLab = ({ date }) => {
     pad(actualHours) +
     ':' +
     pad(actualMinutes);
-  console.log(fullDate);
 
   const today = helpers.isToday(dataString);
   const tomorrow = helpers.isTomorrow(dataString);
