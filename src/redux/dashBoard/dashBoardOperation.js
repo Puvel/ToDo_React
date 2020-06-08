@@ -61,3 +61,44 @@ export const updateTasks = params => async (dispatch, getState) => {
     console.log(err);
   }
 };
+
+export const createTask = params => async (dispatch, getState) => {
+  try {
+    const userName = { nickname: params };
+    const data = await axios.post(
+      "https://develop-questify.goit.co.ua/api/quests",
+      userName,
+    );
+    const status = data.status === 200;
+    const tasks = getTasks(data);
+    const dashBoard = {
+      today: [],
+      tomorrow: [],
+      allRest: [],
+      done: [],
+      challange: [],
+    };
+
+    const reduxTasks = tasks.map(task => {
+      console.log(task);
+      if (task.done) {
+        dashBoard.done.push(task);
+      } else {
+        const actualDate = new Date(task.dueDate);
+        if (isToday(actualDate)) {
+          dashBoard.today.push(task);
+        } else if (isTomorrow(actualDate)) {
+          dashBoard.tomorrow.push(task);
+        } else {
+          dashBoard.allRest.push(task);
+        }
+      }
+    });
+    if (status) {
+      dispatch(dashBoardSlice.actions.updateTasks(dashBoard));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
