@@ -131,6 +131,16 @@ export const Card = ({
     console.log(state);
   };
 
+  const handleContinuteDone = async () => {
+    // console.log(state);
+    // setstate(prev => ({ ...prev, [name]: value }));
+    // console.log(state);
+    // setState(prev => ({ ...prev, done: true }));
+    dispatch(editCard({...state, done:true}));
+    // setDone(!isDone);
+  }
+
+
   const hours = new Date(dueDate);
   const date =
     hours.getFullYear() +
@@ -146,13 +156,7 @@ export const Card = ({
         <div>
           <button onClick={() => setDone(!isDone)}>not yet</button>
           <button
-            onClick={async () => {
-              console.log(state);
-              await setState(prev => ({ ...prev, done: true }));
-              console.log(state);
-              dispatch(editCard(state));
-              setDone(!isDone);
-            }}>
+            onClick={handleContinuteDone}>
             continute
           </button>
         </div>

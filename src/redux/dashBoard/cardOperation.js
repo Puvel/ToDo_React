@@ -24,16 +24,22 @@ const isTomorrow = date => {
   );
 };
 
-export const editCard = ({ _id, dueDate, name, difficulty, group }) => async (
-  dispatch,
-  getState,
-) => {
+export const editCard = ({
+  _id,
+  dueDate,
+  name,
+  difficulty,
+  group,
+  done,
+  
+}) => async (dispatch, getState) => {
   const state = getState();
   console.log(state.user.nickname);
+  console.log(done, _id);
   try {
     const data = await axios.put(
       `https://questify.goit.co.ua/api/quests/${_id}`,
-      { dueDate, name, difficulty, group },
+      { dueDate, name, difficulty, group, done },
       { headers: { "content-type": "application/json" } },
     );
     const status = data.status === 201;
@@ -48,7 +54,7 @@ export const editCard = ({ _id, dueDate, name, difficulty, group }) => async (
             userName,
           );
           const status = data.status === 200;
-          const tasks = getTasks(data);
+          const tasks = await getTasks(data);
           const dashBoard = {
             today: [],
             tomorrow: [],
