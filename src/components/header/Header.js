@@ -7,7 +7,7 @@ import logOutSvg from '../../assets/images/icons/logout.svg';
 
 function Header({ handleLogOut }) {
   const nickname = useSelector(state => state.user.nickname);
-  const nickNameSlice = [...nickname[0]];
+  const nickNameSlice = [...nickname[0].toUpperCase()];
 
   return (
     <>

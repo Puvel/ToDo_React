@@ -89,6 +89,15 @@
   color: rgb(185, 195, 200);
 }
 
+.cardSelect > div {
+  background-color: white;
+}
+
+.cardSelect > div > div:last-child > span,
+.cardSelect > div > div:last-child > div > svg {
+  display: none;
+}
+
 .cardStarIcon {
   margin-right: 30px;
   margin-top: 5px;
