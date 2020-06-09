@@ -1,13 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: {
-    nickName: "",
+    nickName: '',
   },
   reducers: {
     getUser: (state, { payload }) => {
-      console.log(payload);
       return {
         ...state,
         nickname: payload,

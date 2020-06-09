@@ -1,17 +1,15 @@
 .headerContainer {
-    width: 100%;
-    background-color: #00365b;
-    
+  width: 100%;
+  background-color: #00365b;
 }
 
 .headerUserWrapper {
-    padding: 18px 0;
-    margin: 0 auto;
-    width: 280px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
+  padding: 18px 0;
+  margin: 0 auto;
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 /* .cardStarIcon:hover {
 
@@ -20,124 +18,118 @@
    } */
 
 .headerLogo {
-    width: 68px;
+  width: 68px;
 }
 
 .headerUserInfo {
-    width: 112px;
-    display: flex;
-    justify-content: space-between;
-    
+  width: 112px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .headerUserInfo__list {
-    display: flex;
+  display: flex;
 }
 
 .headerUserInfo__listItem_SliceNickname {
-    margin: 0 auto;
-    text-align: center;
-    padding: 2px 2px;
-    width: 22px;
-    border-radius: 50%;
-    background-color: gray;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2px 2px;
+  width: 22px;
+  border-radius: 50%;
+  background-color: gray;
 }
 
 .headerUserInfo__listItem_FullNickname {
-    font-family: Helvetica Neue Cyr Roman Bold;
-    display: none;
+  font-family: Helvetica Neue Cyr Roman Bold;
+  display: none;
 }
 
 .headerChellenge {
-    height: 22px;
-    width: 22px;
-    background-image: url(../../assets/images/icons/trophy.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    box-shadow: 0px 6px 13px 0px rgba(121, 215, 254, 0.43);
-    background-color: #00daff;
-
-    
+  height: 22px;
+  width: 22px;
+  background-image: url(../../assets/images/icons/trophy.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  box-shadow: 0px 6px 13px 0px rgba(121, 215, 254, 0.43);
+  background-color: #00daff;
 }
 
-
 .buttonLogOut {
-    
-    transform: rotate(180deg);
-    border: none;
-    background-color: inherit;
-    width: 20px;
+  transform: rotate(180deg);
+  border: none;
+  background-color: inherit;
+  width: 20px;
 }
 
 @media (min-width: 768px) {
+  .buttonLogOut {
+    align-self: center;
+    width: 25px;
+    height: 25px;
+  }
 
-    .buttonLogOut {
-        align-self: center;
-        width: 25px;
-        height: 25px;
-    }
+  .headerChellenge {
+    margin-right: 32px;
+    width: 35px;
+    height: 35px;
+  }
 
-    .headerChellenge {
-        margin-right: 32px;
-        width: 35px;
-        height: 35px;
-    }
+  .headerUserInfo__list {
+    width: 418px;
+    flex-grow: 2;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .headerUserInfo__list {
-        width: 418px;
-        flex-grow: 2;
-        justify-content: center;
-        align-items: center;
-    }
+  .headerLogo {
+    width: 100px;
+  }
 
+  .headerUserWrapper {
+    padding: 20px 0;
+    width: 600px;
+  }
 
-    .headerLogo {
-        width: 100px;
-    }
+  .headerUserInfo {
+    width: 510px;
+  }
 
-    .headerUserWrapper {
-        padding: 20px 0;
-        width: 600px;
-    }
+  .headerUserInfo__listItem_SliceNickname {
+    padding: 6px 6px;
+    width: 35px;
+  }
 
-    .headerUserInfo {
-        width: 510px;
-    }
-
-    .headerUserInfo__listItem_SliceNickname {
-        padding: 6px 6px;
-        width: 35px;
-
-
-    }
-
-    .headerUserInfo__listItem_FullNickname {
-        color: rgb(128, 128, 128);
-        font-weight: 600;
-        font-family:  HelveticaNeueCyr, Arial, sans-serif;
-        margin-left: 16px;
-        display: block;
-    }
+  .headerUserInfo__listItem_FullNickname {
+    color: rgb(128, 128, 128);
+    font-weight: 600;
+    font-family: HelveticaNeueCyr, Arial, sans-serif;
+    margin-left: 16px;
+    display: block;
+  }
 }
 
 @media (min-width: 1280px) {
-    .headerUserWrapper {
-        width: 1024px;
-    }
+  .headerUserWrapper {
+    width: 1024px;
+  }
 
-    .headerUserInfo {
-        width: 934px;
-    }
+  .headerUserInfo {
+    width: 934px;
+  }
 
-    .headerLogo {
-        width: 120px;
-    }
-
-
+  .headerLogo {
+    width: 120px;
+  }
 }
 
-@media (orientation: landscape) {}
+@media (orientation: landscape) {
+}
 
-
-
+.st0 {
+  fill: white;
+}
+.st1 {
+  fill: #ff7b00;
+}

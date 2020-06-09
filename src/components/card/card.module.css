@@ -15,7 +15,7 @@
 
 .cardTitle {
   font-size: 18px;
-  font-family: "HelveticaNeueCyr";
+  font-family: 'HelveticaNeueCyr';
   color: rgb(40, 40, 40);
   font-weight: bold;
   line-height: 1.556;
@@ -30,7 +30,7 @@
 
 .inputTitle {
   font-size: 18px;
-  font-family: "HelveticaNeueCyr";
+  font-family: 'HelveticaNeueCyr';
   color: rgb(40, 40, 40);
   font-weight: bold;
   line-height: 1.556;
@@ -43,11 +43,13 @@
   padding-right: 20px;
   border: none;
   outline: none;
+  margin: 0 auto;
+  display: block;
 }
 
 .inputTitleEdit {
   font-size: 18px;
-  font-family: "HelveticaNeueCyr";
+  font-family: 'HelveticaNeueCyr';
   color: rgb(40, 40, 40);
   font-weight: bold;
   line-height: 1.556;
@@ -61,11 +63,13 @@
   outline: none;
   border: none;
   border-bottom: 1px solid black;
+  margin: 0 auto;
+  display: block;
 }
 
 .cardDate {
   font-size: 15px;
-  font-family: "HelveticaNeueCyr";
+  font-family: 'HelveticaNeueCyr';
   color: rgb(185, 195, 200);
   line-height: 0.733;
   padding-right: 5px;
@@ -81,9 +85,18 @@
   margin-left: 15px;
   width: 120px;
   font-size: 15px;
-  font-family: "HelveticaNeueCyr";
+  font-family: 'HelveticaNeueCyr';
   border: none;
   color: rgb(185, 195, 200);
+}
+
+.cardSelect > div {
+  background-color: white;
+}
+
+.cardSelect > div > div:last-child > span,
+.cardSelect > div > div:last-child > div > svg {
+  display: none;
 }
 
 .cardStarIcon {
@@ -113,26 +126,30 @@
   padding: 0;
   margin: 0;
 }
-starContainer:hover {
-  background-color: #00d7ff;
-  box-shadow: 15px 15px 15px 15px #00d7ff;
+
+.starIcon {
+  fill: #b9c3c8;
 }
-.cardStarIcon:hover {
-  filter: drop-shadow(15px 15px 15px 15px #00d7ff);
-  filter: url(../../assets/images/icons/star.svg) invert(0.3) sepia(0)
-    saturate(1) hue-rotate(0deg) brightness(1);
-  opacity: 0.3;
-  box-shadow: 15px 15px 15px 15px #00d7ff;
+
+.starContainer:hover .starIcon {
+  fill: #00d7ff;
 }
-.cardStyleStar:hover {
-  box-shadow: 0px 3px 7px 0px #00d7ff;
+.starIconActiv {
+  fill: #00d7ff;
 }
+
+/* .starContainer:hover .starIconActiv {
+  fill: #b9c3c8;
+} */
+
 .starContainer {
-  box-shadow: 0px 3px 7px 0px #00d7ff;
+  margin-right: 24px;
+  background-color: transparent;
+  border: none;
 }
 .cardSelectCategory {
   font-size: 11px;
-  font-family: "HelveticaNeueCyr";
+  font-family: 'HelveticaNeueCyr';
   color: rgb(182, 196, 202);
   text-transform: uppercase;
   line-height: 1;
@@ -157,115 +174,187 @@ starContainer:hover {
   position: absolute; 
 }
 .kek > div > div > div:last-child > div > svg {
-  display: none; 
-   position: absolute; 
+  display: none;
+  position: absolute;
+}
+.cardSelectCategory > div:nth-child(3) {
+  border: 1px solid hsl(0, 0%, 80%);
+}
+/* .hardLevelContainer div {
+  border: none;
+  box-shadow: none;
+}
+.hardLevelContainer > div > div {
+  padding: 0;
+  margin: 0;
+}
+.hardLevelContainer > div > div:nth-child(3) > div {
+  padding: 0;
+  margin: 0;
+}
+.cardSelectCategory div {
+  border: none;
+} */
 
+.challengeCardMain {
+  border-radius: 10px;
+  background-color: rgb(32, 57, 90);
+  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  width: 285px;
+  height: 264px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  list-style: none;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.challengeHardLevelContainer {
+  display: flex;
+  justify-content: space-between;
+  outline: none;
+}
+.challengeHardLevelContainer div {
+  border: none;
+  box-shadow: none;
+}
+.challengeHardLevelContainer > div > div:nth-child(3) {
+  border: 1px solid hsl(0, 0%, 80%);
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+.challengeHardLevelContainer > div > div {
+  padding: 0;
+  margin: 0;
+}
+.challengeHardLevelContainer > div > div:nth-child(3) > div {
+  padding: 0;
+  margin: 0;
+}
+challengeHardLevelContainer:hover {
+  background-color: rgb(0, 217, 255);
+  box-shadow: 15px 15px 15px 15px #00d7ff;
+}
+.challengeHardLevelContainer > div > div > div {
+  background-color: rgb(32, 57, 90);
+  padding-left: 10px;
+}
+.challengeHardLevelContainer > div > div > div > div > div:nth-child(1) {
+  color: rgb(185, 195, 200);
+}
+.challengeHardLevelContainer > div > div > div > div > div:last-child {
+  background-color: transparent;
+}
+.challengeHardLevelContainer > div > div > div > div:last-child > span {
+  display: none;
+}
+.challengeHardLevelContainer > div > div > div > div:last-child > div > svg {
+  display: none;
 }
 .cardSelectCategory > div:nth-child(3) {
   border: 1px solid hsl(0, 0%, 80%);
 }
 
-
-.challengeCardMain{
-    border-radius: 10px;
-    background-color: rgb(32, 57, 90);
-    box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
-    width: 285px;
-    height: 264px;
-    border-radius: 10px;
-    box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
-    list-style: none;
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
-  
-
-.challengeHardLevelContainer{
-    display: flex;
-    justify-content: space-between;
-    outline: none;
+.challenge {
+  font-size: 13px;
+  font-family: 'HelveticaNeueCyr';
+  color: rgb(123, 138, 164);
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 0.846;
+  padding-top: 30px;
+  text-align: center;
 }
-.challengeHardLevelContainer div {
-    border: none;
-    box-shadow: none;
-  }
-  .challengeHardLevelContainer > div > div:nth-child(3) {
-    border: 1px solid hsl(0, 0%, 80%);
-    position: absolute;
-    top: -10px;
-    left: -10px;
-  }
-  .challengeHardLevelContainer > div > div {
-    padding: 0;
-    margin: 0;
-  }
-  .challengeHardLevelContainer > div > div:nth-child(3) > div {
-    padding: 0;
-    margin: 0;
-  }
-  challengeHardLevelContainer:hover {
-    background-color: #00d7ff;
-    box-shadow: 15px 15px 15px 15px #00d7ff;
-  }
+.challengrCardTitle {
+  font-size: 18px;
+  font-family: 'HelveticaNeueCyr';
+  color: white;
+  font-weight: bold;
+  line-height: 1.556;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: flex-end; */
+}
+.imgCont {
+  display: flex;
+  justify-content: space-between;
+}
+.imgCont span {
+  background-color: rgb(123, 138, 164);
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+.btn {
+  border: none;
+  background-color: transparent;
+  font-size: 15px;
+  font-family: 'HelveticaNeueCyr';
+  color: rgb(0, 215, 255);
+  text-transform: uppercase;
+  line-height: 0.733;
+  padding-right: 25px;
+  padding-left: 20px;
+}
+.btnDel {
+  background-color: transparent;
+  border: none;
+  padding-right: 12px;
+}
+.sel {
+  width: 160px;
+}
+.sel > div > div > div > div:last-child {
+  background-color: transparent;
+}
+.sel > div > div > div:last-child > span {
+  display: none;
+}
+.sel > div > div > div:last-child > div > svg {
+  display: none;
+}
+.delite {
+  fill: #da0837;
+  border: rgb(32, 57, 90);
+  background-color: rgb(32, 57, 90);
+}
+.delite:hover {
+  fill: #aa273b;
+}
 
-  .challengeHardLevelContainer > div>div>div{
-    background-color: rgb(32, 57, 90);
-    padding-left: 10px;
+.Btn {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+}
 
-  }
-  .challengeHardLevelContainer>div >div>div>div>div:nth-child(1){
-   color: rgb(185, 195, 200);
-  }
+.edit,
+.save {
+  fill: #00d7ff;
+}
 
-  .challengeHardLevelContainer >div > div > div > div > div:last-child {
-    background-color: transparent;
-  }
-  .challengeHardLevelContainer >div > div > div > div:last-child > span {
-    display: none;
-  }
-  .challengeHardLevelContainer >div > div > div > div:last-child > div > svg {
-    display: none;
-  }
-  .cardSelectCategory > div:nth-child(3) {
-    border: 1px solid hsl(0, 0%, 80%);
-  }
-  .challenge{
-    font-size: 13px;
-    font-family: "HelveticaNeueCyr";
-    color: rgb(123, 138, 164);
-    font-weight: bold;
-    text-transform: uppercase;
-    line-height: 0.846;
-    padding-top: 30px;
-    text-align: center;
-  }
-  .challengrCardTitle{
-    font-size: 18px;
-    font-family: 'HelveticaNeueCyr';
-    color:white;
-    font-weight: bold;
-    line-height: 1.556;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    
-  }
- .container{
-     display: flex;
-     justify-content: space-between;
-     /* align-items: flex-end; */
-     
- }
- .imgCont{
-     display: flex;
-     justify-content: space-between;
- 
+.delit {
+  fill: #da0837;
+}
 
- }
- .imgCont span{
-    background-color: rgb(123, 138, 164); 
-    margin-top: 4px;
-    margin-bottom: 10px;
+.done {
+  fill: #24d40c;
+}
+.editBtn:hover .edit,
+.saveBtn:hover .save {
+  fill: #47aad5;
+}
+.deliteBtn:hover .delit {
+  fill: #aa273b;
+}
+
+.doneBtn:hover .done {
+  fill: #439945;
 }
  .btn{
      border:none;

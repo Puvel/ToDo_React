@@ -1,7 +1,5 @@
 import axios from 'axios';
-import * as helpers from '../../helpers/functions';
 import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
-import { updateTasks } from '../dashBoard/dashBoardOperation';
 
 const getData = data => data.data.data;
 const getTasks = data => getData(data).tasks;
@@ -24,28 +22,64 @@ const isTomorrow = date => {
   );
 };
 
-export const editCard = ({
-  _id,
-  dueDate,
-  name,
-  difficulty,
-  group,
-  done,
-  isPriority,
-}) => async (dispatch, getState) => {
+export const updateTasks = params => async (dispatch, getState) => {
+  console.log('dasdasdasdasdasdas');
+  try {
+    const userName = { nickname: params };
+    const data = await axios.post(
+      'https://questify.goit.co.ua/api/login',
+      userName,
+    );
+    const status = data.status === 200;
+    const tasks = getTasks(data);
+    const dashBoard = {
+      today: [],
+      tomorrow: [],
+      allRest: [],
+      done: [],
+      challange: [],
+    };
+
+    const reduxTasks = tasks.map(task => {
+      console.log(task);
+      if (task.done) {
+        dashBoard.done.push(task);
+      } else {
+        const actualDate = new Date(task.dueDate);
+        if (isToday(actualDate)) {
+          dashBoard.today.push(task);
+        } else if (isTomorrow(actualDate)) {
+          dashBoard.tomorrow.push(task);
+        } else {
+          dashBoard.allRest.push(task);
+        }
+      }
+    });
+    if (status) {
+      dispatch(dashBoardSlice.actions.updateTasks(dashBoard));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const createTask = params => async (dispatch, getState) => {
   const state = getState();
   console.log(state.user.nickname);
-  console.log(done, _id);
+  const userId = state.token;
+  const newTaskData = { ...params, userId };
+  delete newTaskData._id;
+  console.log(newTaskData);
+
   try {
-    const data = await axios.put(
-      `https://questify.goit.co.ua/api/quests/${_id}`,
-      { dueDate, name, difficulty, group, done, isPriority },
-      { headers: { 'content-type': 'application/json' } },
+    console.log('we are here');
+    const data = await axios.post(
+      'https://questify.goit.co.ua/api/quests',
+      newTaskData,
     );
     const status = data.status === 201;
-    // set data to redux according to today or tomorrow ....
+    console.log(status);
     if (status) {
-      const actualDate = new Date(data.data.quest.dueDate);
       const addTaskFunc = async params => {
         try {
           const userName = { nickname: params };
@@ -54,7 +88,7 @@ export const editCard = ({
             userName,
           );
           const status = data.status === 200;
-          const tasks = await getTasks(data);
+          const tasks = getTasks(data);
           const dashBoard = {
             today: [],
             tomorrow: [],
@@ -86,34 +120,8 @@ export const editCard = ({
         }
       };
       addTaskFunc(state.user.nickname);
-      // const dispatchByDate = () => {
-      //   if (helpers.isToday(actualDate)) {
-      //     dispatch(dashBoardSlice.actions.updateToday(data.data.quest));
-      //   } else if (helpers.isTomorrow(actualDate)) {
-      //     dispatch(dashBoardSlice.actions.updateTomorrow(data.data.quest));
-      //   } else {
-      //     dispatch(dashBoardSlice.actions.updateAllRest(data.data.quest));
-      //   }
-      // };
-      // dispatchByDate();
     }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const deleteCard = ({ _id }) => async (dispatch, getState) => {
-  const state = getState();
-  const nickname = state.user.nickname;
-  try {
-    const data = await axios.delete(
-      `https://questify.goit.co.ua/api/quests/${_id}`,
-    );
-    const status = data.status === 201;
-    if (status) {
-      dispatch(updateTasks(nickname));
-      // dispatch(dashBoardSlice.actions.deleteTask(_id));
-    }
+    console.log(data);
   } catch (err) {
     console.log(err);
   }

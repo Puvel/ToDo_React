@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import axios from "axios";
-import Login from "../components/login/Login";
-import { signInUser } from "../redux/token/tokenOperation";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import Login from '../components/login/Login';
+import { signInUser } from '../redux/token/tokenOperation';
 const initialState = {
-  nickname: "",
+  nickname: '',
 };
 
 export const LoginPage = () => {
@@ -14,25 +14,7 @@ export const LoginPage = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log(state);
     dispatch(signInUser(state));
-    // const getToken = async () => {
-    //   try {
-    //     const data = await axios.post("https://questify.goit.co.ua/api/login", {
-    //       nickname: state.login,
-    //     });
-    //     console.log(data);
-    //     setAuth(data);
-    //     const quotes = await axios.get(
-    //       "https://questify.goit.co.ua/api/quests",
-    //     );
-
-    //     console.log(quotes);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // getToken();
   };
 
   const handleChange = ({ target: { name, value } }) => {

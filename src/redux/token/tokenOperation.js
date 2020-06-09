@@ -45,7 +45,6 @@ export const signInUser = params => async (dispatch, getState) => {
     };
 
     const reduxTasks = tasks.map(task => {
-      console.log(task);
       if (task.done) {
         dashBoard.done.push(task);
       } else {
@@ -59,7 +58,6 @@ export const signInUser = params => async (dispatch, getState) => {
         }
       }
     });
-
     if (status) {
       dispatch(userSlice.actions.getUser(nickName));
       console.log(data.data.message);
