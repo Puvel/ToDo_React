@@ -50,7 +50,7 @@ const getDifficulty = {
   Hard: colourOptions[0],
 };
 export const ChallengeCard = ({
-  task: { _id, dueDate, name, difficulty, group },
+  task: { _id, dueDate, name, difficulty, group, challengeSendToUser },
 }) => {
   const hours = new Date(dueDate);
   const actualHours = hours.getHours();
