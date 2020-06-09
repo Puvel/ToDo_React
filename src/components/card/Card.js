@@ -108,7 +108,7 @@ export const Card = ({
   // edit card function
   const priorityToogle = async () => {
     setState(prev => ({ ...prev, isPriority: !prev.isPriority }));
-    // dispatch(editCard({ ...state, done: true }));
+    dispatch(editCard({ ...state, isPriority: !isPriority }));
   };
 
   const handleChange = ({ target: { name, value } }) => {
