@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const dashBoardSlice = createSlice({
-  name: 'dashboard',
+  name: "dashboard",
   initialState: {
     today: [],
     tomorrow: [],
@@ -53,6 +53,13 @@ export const dashBoardSlice = createSlice({
         ...state,
         tomorrow: actualTomorrow,
       };
+    },
+
+    abortTaskCreate: (state, { payload }) => {
+      const today = state.today.shift(0);
+      console.log(today);
+      return state;
+      // return { today };
     },
     updateAllRest: (state, { payload }) => {
       const actualAllRest = state.allRest.map(item => {

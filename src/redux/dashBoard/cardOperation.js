@@ -1,7 +1,7 @@
-import axios from 'axios';
-import * as helpers from '../../helpers/functions';
-import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
-import { updateTasks } from '../dashBoard/dashBoardOperation';
+import axios from "axios";
+import * as helpers from "../../helpers/functions";
+import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
+import { updateTasks } from "../dashBoard/dashBoardOperation";
 
 const getData = data => data.data.data;
 const getTasks = data => getData(data).tasks;
@@ -40,7 +40,7 @@ export const editCard = ({
     const data = await axios.put(
       `https://questify.goit.co.ua/api/quests/${_id}`,
       { dueDate, name, difficulty, group, done, isPriority },
-      { headers: { 'content-type': 'application/json' } },
+      { headers: { "content-type": "application/json" } },
     );
     const status = data.status === 201;
     // set data to redux according to today or tomorrow ....
@@ -50,7 +50,7 @@ export const editCard = ({
         try {
           const userName = { nickname: params };
           const data = await axios.post(
-            'https://questify.goit.co.ua/api/login',
+            "https://questify.goit.co.ua/api/login",
             userName,
           );
           const status = data.status === 200;
@@ -109,7 +109,96 @@ export const deleteCard = ({ _id }) => async (dispatch, getState) => {
     const data = await axios.delete(
       `https://questify.goit.co.ua/api/quests/${_id}`,
     );
+    console.log(data);
     const status = data.status === 201;
+    console.log(status);
+    console.log(nickname);
+    if (status) {
+      dispatch(updateTasks(nickname));
+      // dispatch(dashBoardSlice.actions.deleteTask(_id));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteChellangeCard = ({ _id, userId }) => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const nickname = state.user.nickname;
+  const body = {
+    updateFields: { challengeSendToUser: false },
+    userId,
+  };
+  try {
+    const data = await axios.put(
+      `https://questify.goit.co.ua/api/challenges/${_id}`,
+      body,
+    );
+    console.log(data);
+    const status = data.status === 201;
+    console.log(status);
+    console.log(nickname);
+    if (status) {
+      dispatch(updateTasks(nickname));
+      // dispatch(dashBoardSlice.actions.deleteTask(_id));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateChellangeCard = ({
+  _id,
+  userId,
+  difficulty,
+  dueDate,
+}) => async (dispatch, getState) => {
+  const state = getState();
+  const nickname = state.user.nickname;
+  console.log(_id, userId, difficulty, dueDate);
+  const body = {
+    updateFields: { challengeSendToUser: true, difficulty, dueDate },
+    userId,
+  };
+  try {
+    const data = await axios.put(
+      `https://questify.goit.co.ua/api/challenges/${_id}`,
+      body,
+    );
+    console.log(data);
+    const status = data.status === 201;
+    console.log(status);
+    console.log(nickname);
+    if (status) {
+      dispatch(updateTasks(nickname));
+      // dispatch(dashBoardSlice.actions.deleteTask(_id));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const completeChellange = ({ _id, userId }) => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const nickname = state.user.nickname;
+  // const body = { updateFields: { challengeSendToUser: true, done: true } };
+  // console.log(body);
+  console.log(_id, userId);
+  try {
+    const data = await axios.put(
+      `https://questify.goit.co.ua/api/challenges/${_id}`,
+      { updateFields: { challengeSendToUser: true, done: true }, userId },
+    );
+    console.log(data);
+    const status = data.status === 201;
+    console.log(status);
+    console.log(nickname);
     if (status) {
       dispatch(updateTasks(nickname));
       // dispatch(dashBoardSlice.actions.deleteTask(_id));

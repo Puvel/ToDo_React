@@ -7,6 +7,7 @@ import {
 import { tokenSlice } from "./token/tokenReducer";
 import { userSlice } from "./user/userReducer";
 import { dashBoardSlice } from "./dashBoard/dashBoardReducer";
+import { chellangeSlice } from "./dashBoard/chellangeReducer";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -20,6 +21,7 @@ export const authReducer = combineReducers({
   [tokenSlice.name]: tokenSlice.reducer,
   [userSlice.name]: userSlice.reducer,
   [dashBoardSlice.name]: dashBoardSlice.reducer,
+  [chellangeSlice.name]: chellangeSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, authReducer);

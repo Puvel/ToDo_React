@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { tokenSlice } from '../redux/token/tokenReducer';
-import { dashBoardSlice } from '../redux/dashBoard/dashBoardReducer';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { tokenSlice } from "../redux/token/tokenReducer";
+import { dashBoardSlice } from "../redux/dashBoard/dashBoardReducer";
 
-import Header from '../components/header/Header';
-import TodoList from '../components/todoList/TodoList';
-import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
+import Header from "../components/header/Header";
+import TodoList from "../components/todoList/TodoList";
+import CreateQuestButton from "../components/createQuestButton/CreateQuestButton";
 
 const today = new Date().toISOString();
 
@@ -23,21 +23,21 @@ const DashboardPage = () => {
   };
 
   const handleCreate = () => {
-    console.log('creating a task');
+    console.log("creating a task");
 
     dispatch(
       dashBoardSlice.actions.createTask({
-        createdAt: '2020-06-07T09:35:56.563Z',
-        difficulty: 'Easy',
+        createdAt: "2020-06-07T09:35:56.563Z",
+        difficulty: "Easy",
         done: false,
-        dueDate: '',
-        group: 'Productivity',
+        dueDate: new Date(),
+        group: "Productivity",
         isPriority: false,
         isQuest: true,
-        name: 'Create an account',
-        updatedAt: '2020-06-07T09:35:56.563Z',
-        userId: '5edcb4fc94684d2asdasd131fe0f00',
-        _id: '5edcb4fc94684d2asdasd131fe0f00dsadassd',
+        name: "Create an account",
+        updatedAt: "2020-06-07T09:35:56.563Z",
+        userId: "5edcb4fc94684d2asdasd131fe0f00",
+        _id: "5edcb4fc94684d2asdasd131fe0f00dsadassd",
         __v: 0,
         onCreate: true,
       }),

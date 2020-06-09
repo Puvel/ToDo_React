@@ -1,36 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import Datetime from 'react-datetime';
-import Select from 'react-select';
-import { editCard, deleteCard } from '../../redux/dashBoard/cardOperation';
-import { createTask } from '../../redux/dashBoard/dashBoardOperation';
-import styles from './card.module.css';
-import chroma from 'chroma-js';
-import starIcon from '../../assets/images/icons/star.svg';
-import fireIcon from '../../assets/images/icons/fire.svg';
-import TimeLab from './TimeLab';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Datetime from "react-datetime";
+import Select from "react-select";
+import { editCard, deleteCard } from "../../redux/dashBoard/cardOperation";
+import { dashBoardSlice } from "../../redux/dashBoard/dashBoardReducer";
+import { createTask } from "../../redux/dashBoard/dashBoardOperation";
+import styles from "./card.module.css";
+import chroma from "chroma-js";
+import starIcon from "../../assets/images/icons/star.svg";
+import fireIcon from "../../assets/images/icons/fire.svg";
+import TimeLab from "./TimeLab";
+
 const colourOptions = [
-  { value: 'Hard', label: 'Hard', color: '#DB0837' },
-  { value: 'Normal', label: 'Normal', color: '#FC842C' },
-  { value: 'Easy', label: 'Easy', color: '#00875A' },
+  { value: "Hard", label: "Hard", color: "#DB0837" },
+  { value: "Normal", label: "Normal", color: "#FC842C" },
+  { value: "Easy", label: "Easy", color: "#00875A" },
 ];
 const categoryOptions = [
-  { value: 'family', label: 'Family', color: 'rgb(248,229,212)' },
-  { value: 'learning', label: 'Learning', color: 'rgb(252, 242, 183)' },
-  { value: 'health', label: 'Health', color: 'rgb(204, 247, 255)' },
-  { value: 'work', label: 'Work', color: 'rgb(211, 246, 206)' },
-  { value: 'leisure', label: 'Leisure', color: 'rgb(238, 216, 242)' },
-  { value: 'productivity', label: 'Productivity', color: 'rgb(209, 225, 246)' },
-  { value: 'social', label: 'Social', color: 'rgb(233, 192, 203)' },
-  { value: 'sport', label: 'Sport', color: 'rgb(186, 241, 229)' },
-  { value: 'Stuff', label: 'Stuff', color: 'rgb(32, 76, 229)' },
+  { value: "family", label: "Family", color: "rgb(248,229,212)" },
+  { value: "learning", label: "Learning", color: "rgb(252, 242, 183)" },
+  { value: "health", label: "Health", color: "rgb(204, 247, 255)" },
+  { value: "work", label: "Work", color: "rgb(211, 246, 206)" },
+  { value: "leisure", label: "Leisure", color: "rgb(238, 216, 242)" },
+  { value: "productivity", label: "Productivity", color: "rgb(209, 225, 246)" },
+  { value: "social", label: "Social", color: "rgb(233, 192, 203)" },
+  { value: "sport", label: "Sport", color: "rgb(186, 241, 229)" },
+  { value: "Stuff", label: "Stuff", color: "rgb(32, 76, 229)" },
 ];
 
 const convert = str => {
   const date = new Date(str),
-    mnth = ('0' + (date.getMonth() + 1)).slice(-2),
-    day = ('0' + date.getDate()).slice(-2);
-  return [date.getFullYear(), mnth, day].join('-');
+    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+    day = ("0" + date.getDate()).slice(-2);
+  return [date.getFullYear(), mnth, day].join("-");
 };
 
 const getGroup = {
@@ -45,14 +47,14 @@ const getGroup = {
   stuff: categoryOptions[8],
 };
 
-const dot = (color = '#ccc') => ({
-  alignItems: 'center',
-  display: 'flex',
-  ':before': {
+const dot = (color = "#ccc") => ({
+  alignItems: "center",
+  display: "flex",
+  ":before": {
     backgroundColor: color,
     borderRadius: 10,
     content: '" "',
-    display: 'block',
+    display: "block",
     marginRight: 8,
     height: 10,
     width: 10,
@@ -75,7 +77,7 @@ const getDifficulty = {
 // };
 
 const pad = value => {
-  return String(value).padStart(2, '0');
+  return String(value).padStart(2, "0");
 };
 
 export const Card = ({
@@ -151,13 +153,17 @@ export const Card = ({
     // setDone(!isDone);
   };
 
+  const handleAbortStart = () => {
+    dispatch(dashBoardSlice.actions.abortTaskCreate());
+  };
+
   const hours = new Date(dueDate);
 
   const date =
     hours.getFullYear() +
-    '-' +
+    "-" +
     pad(hours.getMonth() + 1) +
-    '-' +
+    "-" +
     pad(hours.getDate());
   const actualHours = hours.getHours();
   const actualMinutes = hours.getMinutes();
@@ -183,7 +189,7 @@ export const Card = ({
                 defaultValue={colourOptions[0]}
                 styles={colourStyles}
                 className={styles.cardSelect}
-                onChange={handleSelectChange('difficulty')}
+                onChange={handleSelectChange("difficulty")}
               />
               <button className={styles.starContainer} onClick={priorityToogle}>
                 <svg
@@ -211,8 +217,11 @@ export const Card = ({
             />
             <div className={styles.textCont}>
               {onEdit ? (
-                // <input name="data" value={date} onChange={() => {}} />
-                <Datetime onChange={handleDateChange} defaultValue={hours} />
+                <Datetime
+                  onChange={handleDateChange}
+                  defaultValue={hours}
+                  closeOnSelect
+                />
               ) : (
                 <TimeLab date={dueDate} />
               )}
@@ -234,13 +243,13 @@ export const Card = ({
                 className={styles.cardSelectCategory}
                 defaultValue={categoryOptions[5]}
                 styles={backgroundcolourStyles}
-                onChange={handleSelectChange('group')}
+                onChange={handleSelectChange("group")}
               />
             </div>
 
             {onCreate ? (
               <div className={styles.imgCont}>
-                <button className={styles.btnDel}>
+                <button onClick={handleAbortStart} className={styles.btnDel}>
                   <svg
                     className={styles.delite}
                     xmlns="http://www.w3.org/2000/svg"
@@ -355,15 +364,15 @@ const colourStyles = {
         ? color.alpha(0.1).css()
         : null,
       color: isDisabled
-        ? '#ccc'
+        ? "#ccc"
         : isSelected
-        ? chroma.contrast(color, 'white')
-          ? 'white'
-          : '#ccc'
+        ? chroma.contrast(color, "white")
+          ? "white"
+          : "#ccc"
         : data.color,
-      cursor: isDisabled ? 'not-allowed' : 'default',
-      ':active': {
-        ...styles[':active'],
+      cursor: isDisabled ? "not-allowed" : "default",
+      ":active": {
+        ...styles[":active"],
         backgroundColor:
           !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
       },
@@ -373,15 +382,15 @@ const colourStyles = {
   placeholder: styles => ({ ...styles, ...dot() }),
   singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
 };
-const col = (color = '#ccc') => ({
-  padding: '10px',
-  paddingRight: '20px',
+const col = (color = "#ccc") => ({
+  padding: "10px",
+  paddingRight: "20px",
   backgroundColor: color,
   boxShadow: `0 10px ${color})`,
-  borderRadius: '0 60px 60px 0',
+  borderRadius: "0 60px 60px 0",
 });
 const backgroundcolourStyles = {
-  control: styles => ({ ...styles, backgroundColor: 'color' }),
+  control: styles => ({ ...styles, backgroundColor: "color" }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     const color = chroma(data.color);
     return {
@@ -394,15 +403,15 @@ const backgroundcolourStyles = {
         ? color.css()
         : null,
       color: isDisabled
-        ? '#ccc'
+        ? "#ccc"
         : isSelected
-        ? chroma.contrast(color, '#ccc')
-          ? 'black'
-          : '#ccc'
+        ? chroma.contrast(color, "#ccc")
+          ? "black"
+          : "#ccc"
         : color,
-      cursor: isDisabled ? 'not-allowed' : 'default',
-      ':active': {
-        ...styles[':active'],
+      cursor: isDisabled ? "not-allowed" : "default",
+      ":active": {
+        ...styles[":active"],
         backgroundColor:
           !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
       },
