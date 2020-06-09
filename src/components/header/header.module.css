@@ -1,16 +1,19 @@
 .headerContainer {
-  width: 100%;
-  background-color: #00365b;
+    width: 100%;
+    background-color: #00365b;
+
 }
 
 .headerUserWrapper {
-  padding: 18px 0;
-  margin: 0 auto;
-  width: 280px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    padding: 18px 0;
+    margin: 0 auto;
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
+
 /* .cardStarIcon:hover {
 
     filter: invert(0.3) sepia(0) saturate(1) hue-rotate(0deg) brightness(1);
@@ -46,68 +49,115 @@
 }
 
 .headerChellenge {
-  height: 22px;
-  width: 22px;
-  background-image: url(../../assets/images/icons/trophy.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 50%;
-  box-shadow: 0px 6px 13px 0px rgba(121, 215, 254, 0.43);
-  background-color: #00daff;
+    height: 22px;
+    width: 22px;
+    background-image: url(../../assets/images/icons/trophy.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0px 6px 13px 0px rgba(121, 215, 254, 0.43);
+    background-color: #00daff;
+}
+
+.headerChellenge::after {
+    color: wheat;
+    right: 150px;
+    top: 55px;
+    position: absolute;
+    margin: 0 auto;
+    display: block;
+    width: 170px;
+    /* height: 3px; */
+    content: "You've got new challenge";
+    opacity: 0;
+    visibility: hidden;
+
+}
+
+.headerChellenge:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .buttonLogOut {
-  transform: rotate(180deg);
-  border: none;
-  background-color: inherit;
-  width: 20px;
+
+    transform: rotate(180deg);
+    border: none;
+    background-color: inherit;
+    width: 20px;
+
+}
+
+.buttonLogOut::after {
+    transform: rotate(180deg);
+    color: wheat;
+    right: -75px;
+    bottom: 20px;
+    position: absolute;
+    margin: 0 auto;
+    display: block;
+    width: 170px;
+    height: 3px;
+    content: "Log out";
+    opacity: 0;
+    visibility: hidden;
+
+}
+.buttonLogOut:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 @media (min-width: 768px) {
-  .buttonLogOut {
-    align-self: center;
-    width: 25px;
-    height: 25px;
-  }
 
-  .headerChellenge {
-    margin-right: 32px;
-    width: 35px;
-    height: 35px;
-  }
 
-  .headerUserInfo__list {
-    width: 418px;
-    flex-grow: 2;
-    justify-content: center;
-    align-items: center;
-  }
+    .buttonLogOut {
+        align-self: center;
+        width: 25px;
+        height: 25px;
+    }
 
-  .headerLogo {
-    width: 100px;
-  }
+    .headerChellenge {
+        margin-right: 32px;
+        width: 35px;
+        height: 35px;
+    }
 
-  .headerUserWrapper {
-    padding: 20px 0;
-    width: 600px;
-  }
+    .headerUserInfo__list {
+        width: 418px;
+        flex-grow: 2;
+        justify-content: center;
+        align-items: center;
+    }
 
-  .headerUserInfo {
-    width: 510px;
-  }
 
-  .headerUserInfo__listItem_SliceNickname {
-    padding: 6px 6px;
-    width: 35px;
-  }
+    .headerLogo {
+        width: 100px;
+    }
 
-  .headerUserInfo__listItem_FullNickname {
-    color: rgb(128, 128, 128);
-    font-weight: 600;
-    font-family: HelveticaNeueCyr, Arial, sans-serif;
-    margin-left: 16px;
-    display: block;
-  }
+    .headerUserWrapper {
+        padding: 20px 0;
+        width: 600px;
+    }
+
+    .headerUserInfo {
+        width: 510px;
+    }
+
+    .headerUserInfo__listItem_SliceNickname {
+        padding: 6px 6px;
+        width: 35px;
+
+
+    }
+
+    .headerUserInfo__listItem_FullNickname {
+        color: rgb(128, 128, 128);
+        font-weight: 600;
+        font-family: HelveticaNeueCyr, Arial, sans-serif;
+        margin-left: 16px;
+        display: block;
+    }
 }
 
 @media (min-width: 1280px) {

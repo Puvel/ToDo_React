@@ -5,9 +5,8 @@ import { useSelector } from 'react-redux';
 // import thropySvg from "../../assets/images/icons/trophy.svg";
 import logOutSvg from '../../assets/images/icons/logout.svg';
 
-function Header({ handleLogOut }) {
-  const nickname = useSelector(state => state.user.nickname);
-  const nickNameSlice = [...nickname[0]];
+function Header({ nickname = 'ghore', handleLogOut }) {
+  const nickNameSlice = [...nickname[0].toUpperCase()];
 
   return (
     <>
@@ -111,7 +110,7 @@ function Header({ handleLogOut }) {
                 alt="Chellenge"
             /> */}
             </div>
-            <button onClick={handleLogOut} className={style.buttonLogOut}>
+            <button type = 'button' onClick={handleLogOut} className={style.buttonLogOut}>
               <img className={style.buttonSvg} src={logOutSvg} alt="logOut" />
             </button>
           </div>
