@@ -212,7 +212,11 @@ export const Card = ({
             <div className={styles.textCont}>
               {onEdit ? (
                 // <input name="data" value={date} onChange={() => {}} />
-                <Datetime onChange={handleDateChange} defaultValue={hours} />
+                <Datetime
+                  onChange={handleDateChange}
+                  closeOnSelect
+                  defaultValue={hours}
+                />
               ) : (
                 <TimeLab date={dueDate} />
               )}

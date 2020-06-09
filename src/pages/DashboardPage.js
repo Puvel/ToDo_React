@@ -30,7 +30,7 @@ const DashboardPage = () => {
         createdAt: '2020-06-07T09:35:56.563Z',
         difficulty: 'Easy',
         done: false,
-        dueDate: '',
+        dueDate: new Date(),
         group: 'Productivity',
         isPriority: false,
         isQuest: true,
