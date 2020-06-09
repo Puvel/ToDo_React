@@ -31,15 +31,14 @@ export const editCard = ({
   difficulty,
   group,
   done,
-  
+  isPriority,
 }) => async (dispatch, getState) => {
   const state = getState();
-  console.log(state.user.nickname);
-  console.log(done, _id);
+  console.log("Prior", isPriority);
   try {
     const data = await axios.put(
       `https://questify.goit.co.ua/api/quests/${_id}`,
-      { dueDate, name, difficulty, group, done },
+      { dueDate, name, difficulty, group, done, isPriority },
       { headers: { "content-type": "application/json" } },
     );
     const status = data.status === 201;

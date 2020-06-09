@@ -106,8 +106,9 @@ export const Card = ({
     dispatch(createTask(state));
   };
   // edit card function
-  const priorityToogle = () => {
-    setState(prev => ({ ...prev, isPriority: !prev.isPriority }));
+  const priorityToogle = async () => {
+    setState(prev => ({ ...prev, isPriority: !isPriority }));
+    dispatch(editCard({ ...state, isPriority: !isPriority }));
   };
 
   const handleChange = ({ target: { name, value } }) => {
@@ -118,11 +119,6 @@ export const Card = ({
     setState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleContinue = async () => {
-    // setState(prev => ({ ...prev, done: true }));
-    console.log(state);
-    dispatch(editCard(state));
-  };
   const handleDateChange = e => {
     const date = e._d;
     const actualDate = new Date(date).toISOString();
@@ -132,14 +128,9 @@ export const Card = ({
   };
 
   const handleContinuteDone = async () => {
-    // console.log(state);
-    // setstate(prev => ({ ...prev, [name]: value }));
-    // console.log(state);
-    // setState(prev => ({ ...prev, done: true }));
-    dispatch(editCard({...state, done:true}));
-    // setDone(!isDone);
-  }
-
+    dispatch(editCard({ ...state, done: true }));
+    setDone(!isDone);
+  };
 
   const hours = new Date(dueDate);
   const date =
@@ -155,10 +146,7 @@ export const Card = ({
       {isDone ? (
         <div>
           <button onClick={() => setDone(!isDone)}>not yet</button>
-          <button
-            onClick={handleContinuteDone}>
-            continute
-          </button>
+          <button onClick={handleContinuteDone}>continute</button>
         </div>
       ) : (
         <>
@@ -177,9 +165,7 @@ export const Card = ({
                 className={styles.cardSelect}
                 onChange={handleSelectChange("difficulty")}
               />
-              <button
-                className={styles.starContainer}
-                onClick={onEdit ? priorityToogle : () => {}}>
+              <button className={styles.starContainer} onClick={priorityToogle}>
                 <svg
                   className="starIconCl"
                   xmlns="http://www.w3.org/2000/svg"
