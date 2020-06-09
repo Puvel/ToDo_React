@@ -67,6 +67,7 @@ export const Card = () => {
         />
       </div>
       <Select options={categoryOptions} className={styles.cardSelectCategory} />
+
     </li>
   );
 };
