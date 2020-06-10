@@ -315,7 +315,7 @@ export const Card = ({
                   className={`${styles.Btn} ${styles.deliteBtn}`}
                   onClick={() => {
                     setDelete(true);
-                    dispatch(deleteCard(state));
+                    // dispatch(deleteCard(state));
                   }}>
                   <svg
                     className={styles.delit}
@@ -347,7 +347,7 @@ export const Card = ({
           </div>
         </>
       )}
-      {onDelete && <ModalCard />}
+      {onDelete && <ModalCard state={state} setDelete={setDelete} />}
     </li>
   );
 };
