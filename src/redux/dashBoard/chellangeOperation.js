@@ -1,5 +1,6 @@
-import axios from 'axios';
-import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
+import axios from "axios";
+import * as helpers from "../../helpers/functions";
+import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
 
 const getData = data => data.data.data;
 const getTasks = data => getData(data).tasks;
@@ -22,68 +23,33 @@ const isTomorrow = date => {
   );
 };
 
-export const updateTasks = params => async (dispatch, getState) => {
-  try {
-    const userName = { nickname: params };
-    const data = await axios.post(
-      'https://questify.goit.co.ua/api/login',
-      userName,
-    );
-    const status = data.status === 200;
-    const tasks = getTasks(data);
-    const dashBoard = {
-      today: [],
-      tomorrow: [],
-      allRest: [],
-      done: [],
-      challange: [],
-    };
-
-    const reduxTasks = tasks.map(task => {
-      if (task.done) {
-        dashBoard.done.push(task);
-      } else {
-        const actualDate = new Date(task.dueDate);
-        if (isToday(actualDate)) {
-          dashBoard.today.push(task);
-        } else if (isTomorrow(actualDate)) {
-          dashBoard.tomorrow.push(task);
-        } else {
-          dashBoard.allRest.push(task);
-        }
-      }
-    });
-    if (status) {
-      dispatch(dashBoardSlice.actions.updateTasks(dashBoard));
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const createTask = params => async (dispatch, getState) => {
+export const editChellangeStatus = _id => async (dispatch, getState) => {
   const state = getState();
 
-  const userId = state.token;
-  const newTaskData = { ...params, userId };
-  delete newTaskData._id;
-
   try {
-    const data = await axios.post(
-      'https://questify.goit.co.ua/api/quests',
-      newTaskData,
+    const body = {
+      updateFields: { challengeSendToUser: true },
+    };
+    const data = await axios.put(
+      `https://questify.goit.co.ua/api/challenges/${_id}`,
+      JSON.stringify(body),
+      { headers: { "content-type": "application/json" } },
     );
+
     const status = data.status === 201;
+
+    // set data to redux according to today or tomorrow ....
     if (status) {
+      const actualDate = new Date(data.data.challenge.dueDate);
       const addTaskFunc = async params => {
         try {
           const userName = { nickname: params };
           const data = await axios.post(
-            'https://questify.goit.co.ua/api/login',
+            "https://questify.goit.co.ua/api/login",
             userName,
           );
           const status = data.status === 200;
-          const tasks = getTasks(data);
+          const tasks = await getTasks(data);
           const dashBoard = {
             today: [],
             tomorrow: [],
