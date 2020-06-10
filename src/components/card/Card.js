@@ -347,7 +347,7 @@ export const Card = ({
           </div>
         </>
       )}
-      {onDelete && <ModalCard />}
+      {onDelete && <ModalCard state={state} setDelete={setDelete} />}
     </li>
   );
 };
