@@ -29,7 +29,6 @@ export const dashBoardSlice = createSlice({
     updateToday: (state, { payload }) => {
       const actualToday = state.today.map(item => {
         if (item._id === payload._id) {
-          console.log(item);
           return payload;
         } else {
           return item;
@@ -57,9 +56,7 @@ export const dashBoardSlice = createSlice({
 
     abortTaskCreate: (state, { payload }) => {
       const today = state.today.shift(0);
-      console.log(today);
       return state;
-      // return { today };
     },
     updateAllRest: (state, { payload }) => {
       const actualAllRest = state.allRest.map(item => {

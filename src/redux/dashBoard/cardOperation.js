@@ -34,8 +34,6 @@ export const editCard = ({
   isPriority,
 }) => async (dispatch, getState) => {
   const state = getState();
-  console.log(state.user.nickname);
-  console.log(done, _id);
   try {
     const data = await axios.put(
       `https://questify.goit.co.ua/api/quests/${_id}`,
@@ -109,10 +107,7 @@ export const deleteCard = ({ _id }) => async (dispatch, getState) => {
     const data = await axios.delete(
       `https://questify.goit.co.ua/api/quests/${_id}`,
     );
-    console.log(data);
     const status = data.status === 201;
-    console.log(status);
-    console.log(nickname);
     if (status) {
       dispatch(updateTasks(nickname));
       // dispatch(dashBoardSlice.actions.deleteTask(_id));
@@ -137,10 +132,8 @@ export const deleteChellangeCard = ({ _id, userId }) => async (
       `https://questify.goit.co.ua/api/challenges/${_id}`,
       body,
     );
-    console.log(data);
     const status = data.status === 201;
-    console.log(status);
-    console.log(nickname);
+
     if (status) {
       dispatch(updateTasks(nickname));
       // dispatch(dashBoardSlice.actions.deleteTask(_id));
@@ -158,7 +151,6 @@ export const updateChellangeCard = ({
 }) => async (dispatch, getState) => {
   const state = getState();
   const nickname = state.user.nickname;
-  console.log(_id, userId, difficulty, dueDate);
   const body = {
     updateFields: { challengeSendToUser: true, difficulty, dueDate },
     userId,
@@ -168,10 +160,7 @@ export const updateChellangeCard = ({
       `https://questify.goit.co.ua/api/challenges/${_id}`,
       body,
     );
-    console.log(data);
     const status = data.status === 201;
-    console.log(status);
-    console.log(nickname);
     if (status) {
       dispatch(updateTasks(nickname));
       // dispatch(dashBoardSlice.actions.deleteTask(_id));
@@ -187,18 +176,12 @@ export const completeChellange = ({ _id, userId }) => async (
 ) => {
   const state = getState();
   const nickname = state.user.nickname;
-  // const body = { updateFields: { challengeSendToUser: true, done: true } };
-  // console.log(body);
-  console.log(_id, userId);
   try {
     const data = await axios.put(
       `https://questify.goit.co.ua/api/challenges/${_id}`,
       { updateFields: { challengeSendToUser: true, done: true }, userId },
     );
-    console.log(data);
     const status = data.status === 201;
-    console.log(status);
-    console.log(nickname);
     if (status) {
       dispatch(updateTasks(nickname));
       // dispatch(dashBoardSlice.actions.deleteTask(_id));
@@ -207,6 +190,3 @@ export const completeChellange = ({ _id, userId }) => async (
     console.log(err);
   }
 };
-
-
-

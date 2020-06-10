@@ -107,7 +107,7 @@ function Header({ handleLogOut }) {
             </ul>
             <div
               className={
-                activeTrophy ? style.headerChellengeDead : style.headerChellenge
+                activeTrophy ? style.headerChellenge : style.headerChellengeDead
               }>
               {/* <p className = { style.headerChellengeHover}>You've got new challenge</p> */}
               {/* <img

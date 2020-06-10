@@ -1,15 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const chellangeSlice = createSlice({
-  name: 'isNewChellange',
+  name: "isNewChellange",
   initialState: true,
   reducers: {
     startChellange: state => {
-      return !state;
+      return false;
     },
     deleteChellange: state => {
-      console.log('dispatch')
-      console.log('cons', !state);
       return true;
     },
   },

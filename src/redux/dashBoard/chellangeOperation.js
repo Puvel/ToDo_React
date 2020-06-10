@@ -25,7 +25,7 @@ const isTomorrow = date => {
 
 export const editChellangeStatus = _id => async (dispatch, getState) => {
   const state = getState();
-  console.log(state.user.nickname);
+
   try {
     const body = {
       updateFields: { challengeSendToUser: true },
@@ -35,9 +35,9 @@ export const editChellangeStatus = _id => async (dispatch, getState) => {
       JSON.stringify(body),
       { headers: { "content-type": "application/json" } },
     );
-    console.log(data);
+
     const status = data.status === 201;
-    console.log(status);
+
     // set data to redux according to today or tomorrow ....
     if (status) {
       const actualDate = new Date(data.data.challenge.dueDate);
@@ -59,7 +59,6 @@ export const editChellangeStatus = _id => async (dispatch, getState) => {
           };
 
           tasks.map(task => {
-            console.log(task);
             if (task.done) {
               dashBoard.done.push(task);
             } else {
