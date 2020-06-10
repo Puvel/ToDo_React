@@ -89,6 +89,7 @@ export const ChallengeCard = ({
 
   const handleDelete = () => {
     console.log(userId);
+    dispatch(chellangeSlice.actions.deleteChellange());
     dispatch(deleteChellangeCard({ _id, userId }));
   };
   const updateChellange = () => {

@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
+import axios from "axios";
+import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
 
 const getData = data => data.data.data;
 const getTasks = data => getData(data).tasks;
@@ -23,11 +23,10 @@ const isTomorrow = date => {
 };
 
 export const updateTasks = params => async (dispatch, getState) => {
-  console.log('dasdasdasdasdasdas');
   try {
     const userName = { nickname: params };
     const data = await axios.post(
-      'https://questify.goit.co.ua/api/login',
+      "https://questify.goit.co.ua/api/login",
       userName,
     );
     const status = data.status === 200;
@@ -72,9 +71,9 @@ export const createTask = params => async (dispatch, getState) => {
   console.log(newTaskData);
 
   try {
-    console.log('we are here');
+    console.log("we are here");
     const data = await axios.post(
-      'https://questify.goit.co.ua/api/quests',
+      "https://questify.goit.co.ua/api/quests",
       newTaskData,
     );
     const status = data.status === 201;
@@ -84,7 +83,7 @@ export const createTask = params => async (dispatch, getState) => {
         try {
           const userName = { nickname: params };
           const data = await axios.post(
-            'https://questify.goit.co.ua/api/login',
+            "https://questify.goit.co.ua/api/login",
             userName,
           );
           const status = data.status === 200;

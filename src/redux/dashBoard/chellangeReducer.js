@@ -5,8 +5,12 @@ export const chellangeSlice = createSlice({
   initialState: true,
   reducers: {
     startChellange: state => {
-      console.log('cons', !state);
       return !state;
+    },
+    deleteChellange: state => {
+      console.log('dispatch')
+      console.log('cons', !state);
+      return true;
     },
   },
 });

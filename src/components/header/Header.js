@@ -1,9 +1,9 @@
-import React from 'react';
-import style from './header.module.css';
-import logoSvg from '../../assets/images/logo/logoTry.png';
-import { useSelector } from 'react-redux';
+import React from "react";
+import style from "./header.module.css";
+import logoSvg from "../../assets/images/logo/logoTry.png";
+import { useSelector } from "react-redux";
 // import thropySvg from "../../assets/images/icons/trophy.svg";
-import logOutSvg from '../../assets/images/icons/logout.svg';
+import logOutSvg from "../../assets/images/icons/logout.svg";
 
 function Header({ handleLogOut }) {
   const nickname = useSelector(state => state.user.nickname);
@@ -107,7 +107,7 @@ function Header({ handleLogOut }) {
             </ul>
             <div
               className={
-                activeTrophy ? style.headerChellenge : style.headerChellengeDead
+                activeTrophy ? style.headerChellengeDead : style.headerChellenge
               }>
               {/* <p className = { style.headerChellengeHover}>You've got new challenge</p> */}
               {/* <img
