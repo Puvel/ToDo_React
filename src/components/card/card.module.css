@@ -46,6 +46,7 @@
   outline: none;
   margin: 0 auto;
   display: block;
+  background-color: white;
 }
 
 .inputTitleEdit {
@@ -253,7 +254,13 @@ challengeHardLevelContainer:hover {
 .cardSelectCategory > div:nth-child(3) {
   border: 1px solid hsl(0, 0%, 80%);
 }
-
+.viewTrophy {
+  fill: #00d7ff;
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 6px 8px rgba(0, 215, 255, 0.5));
+  margin-top: 10px;
+}
 .challenge {
   font-size: 13px;
   font-family: 'HelveticaNeueCyr';

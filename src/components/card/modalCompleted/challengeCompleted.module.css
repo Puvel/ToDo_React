@@ -1,12 +1,12 @@
-.completeModalImage {
+.challengeCompletedModalImage {
   margin: 0 auto;
   height: 190px;
   width: 230px;
   background: center no-repeat;
-  background-image: url('../../../assets/images/complete-modal/award-2-02.svg');
+  background-image: url('../../../assets/images/complete-modal/award-1-01.svg');
 }
 
-.completeModalTitle {
+.challengeCompletedModalTitle {
   text-align: center;
   font-family: 'HelveticaNeueCyr', Arial, Helvetica, sans-serif;
   padding: 0px;
@@ -19,7 +19,7 @@
   font-stretch: normal;
   line-height: 1;
   letter-spacing: 0.9px;
-  color: rgb(40, 40, 40);
+  color: white;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -27,19 +27,19 @@
   padding-right: 20px;
 }
 
-.completeModalTitleSpan {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.challengeCompletedModalTitleSpan {
   text-decoration: underline;
   text-transform: none;
   color: #00d7ff;
   font-size: 12px;
   font-stretch: normal;
+  white-space: nowrap;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.completeModalText {
+.challengeCompletedModalText {
   display: block;
   margin: 0 auto;
   background-color: transparent;
