@@ -7,6 +7,7 @@
   list-style: none;
   padding-top: 24px;
   padding-bottom: 24px;
+  position: relative;
 }
 
 .cardMain:not(:last-child) {
