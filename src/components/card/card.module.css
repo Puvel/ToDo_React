@@ -7,10 +7,17 @@
   list-style: none;
   padding-top: 24px;
   padding-bottom: 24px;
+  position: relative;
 }
 
 .cardMain:not(:last-child) {
   margin-bottom: 22px;
+}
+
+.indicatorSeparator {
+  height: 22px;
+  width: 1px;
+  background-color: rgb(123, 138, 164);
 }
 
 .cardTitle {
@@ -45,6 +52,9 @@
   outline: none;
   margin: 0 auto;
   display: block;
+  background-color: white;
+  position: relative;
+  margin-bottom: 16px;
 }
 
 .inputTitleEdit {
@@ -65,6 +75,7 @@
   border-bottom: 1px solid black;
   margin: 0 auto;
   display: block;
+  margin-bottom: 16px;
 }
 
 .cardDate {
@@ -107,6 +118,7 @@
   display: flex;
   justify-content: space-between;
   outline: none;
+  margin-bottom: 30px;
 }
 .hardLevelContainer div {
   border: none;
@@ -138,9 +150,9 @@
   fill: #00d7ff;
 }
 
-/* .starContainer:hover .starIconActiv {
+.starContainer:hover .starIconActiv {
   fill: #b9c3c8;
-} */
+}
 
 .starContainer {
   margin-right: 24px;
@@ -154,6 +166,7 @@
   text-transform: uppercase;
   line-height: 1;
 }
+
 .cardSelectCategory div {
   border: none;
   box-shadow: none;
@@ -162,10 +175,20 @@
   padding: 0;
   margin: 0;
 }
+
+.cardSelectCategory > div > div > div {
+  color: black;
+}
+
 .cardSelectCategory > div > div:nth-child(3) > div {
   padding: 0;
   margin: 0;
 }
+.kek {
+  display: inline-block;
+  width: 150px;
+}
+
 .kek > div > div > div > div:last-child {
   background-color: transparent;
 }
@@ -207,6 +230,7 @@
   list-style: none;
   padding-top: 24px;
   padding-bottom: 24px;
+  position: relative;
 }
 .challengeHardLevelContainer {
   display: flex;
@@ -231,10 +255,7 @@
   padding: 0;
   margin: 0;
 }
-challengeHardLevelContainer:hover {
-  background-color: rgb(0, 217, 255);
-  box-shadow: 15px 15px 15px 15px #00d7ff;
-}
+
 .challengeHardLevelContainer > div > div > div {
   background-color: rgb(32, 57, 90);
   padding-left: 10px;
@@ -254,7 +275,13 @@ challengeHardLevelContainer:hover {
 .cardSelectCategory > div:nth-child(3) {
   border: 1px solid hsl(0, 0%, 80%);
 }
-
+.viewTrophy {
+  fill: #00d7ff;
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 6px 8px rgba(0, 215, 255, 0.5));
+  margin-top: 10px;
+}
 .challenge {
   font-size: 13px;
   font-family: 'HelveticaNeueCyr';
@@ -274,6 +301,11 @@ challengeHardLevelContainer:hover {
   text-align: center;
   padding-top: 10px;
   padding-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .container {
   display: flex;
@@ -282,12 +314,22 @@ challengeHardLevelContainer:hover {
 }
 .imgCont {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 .imgCont span {
   background-color: rgb(123, 138, 164);
   margin-top: 4px;
   margin-bottom: 10px;
+}
+.bottomWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btnWrap {
+  margin-right: 20px;
 }
 .btn {
   border: none;
@@ -298,12 +340,13 @@ challengeHardLevelContainer:hover {
   text-transform: uppercase;
   line-height: 0.733;
   padding-right: 25px;
-  padding-left: 20px;
+  padding-left: 6px;
+  text-align: center;
 }
 .btnDel {
   background-color: transparent;
   border: none;
-  padding-right: 12px;
+  padding-right: 3px;
 }
 .sel {
   width: 160px;
@@ -319,8 +362,7 @@ challengeHardLevelContainer:hover {
 }
 .delite {
   fill: #da0837;
-  border: rgb(32, 57, 90);
-  background-color: rgb(32, 57, 90);
+  background-color: transparent;
 }
 .delite:hover {
   fill: #aa273b;

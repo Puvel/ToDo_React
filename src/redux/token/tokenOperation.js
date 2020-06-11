@@ -60,7 +60,6 @@ export const signInUser = params => async (dispatch, getState) => {
     });
     if (status) {
       dispatch(userSlice.actions.getUser(nickName));
-      console.log(data.data.message);
       dispatch(tokenSlice.actions.getToken({ token: tokenValue }));
       dispatch(dashBoardSlice.actions.getTasks(dashBoard));
     }
