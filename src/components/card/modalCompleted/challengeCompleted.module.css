@@ -10,7 +10,7 @@
   text-align: center;
   font-family: 'HelveticaNeueCyr', Arial, Helvetica, sans-serif;
   padding: 0px;
-  margin: 0px auto;
+  margin: 0px;
   text-align: center;
   text-transform: uppercase;
   font-size: 15px;
@@ -20,11 +20,14 @@
   line-height: 1;
   letter-spacing: 0.9px;
   color: white;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 5px;
+}
+
+.challengeCompletedTitleWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .challengeCompletedModalTitleSpan {
@@ -37,6 +40,7 @@
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-right: 20px;
 }
 
 .challengeCompletedModalText {

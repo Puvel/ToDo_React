@@ -1,28 +1,10 @@
 import axios from 'axios';
-import * as helpers from '../../helpers/functions';
+import { isToday, isTomorrow } from '../../helpers/functions';
 import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
 import { updateTasks } from '../dashBoard/dashBoardOperation';
 
 const getData = data => data.data.data;
 const getTasks = data => getData(data).tasks;
-
-const isToday = date => {
-  const today = new Date();
-  return (
-    date.getDate() === today.getDate() &&
-    date.getMonth() === today.getMonth() &&
-    date.getFullYear() === today.getFullYear()
-  );
-};
-
-const isTomorrow = date => {
-  const today = new Date();
-  return (
-    date.getDate() === today.getDate() + 1 &&
-    date.getMonth() === today.getMonth() &&
-    date.getFullYear() === today.getFullYear()
-  );
-};
 
 export const editCard = ({
   _id,
@@ -41,7 +23,6 @@ export const editCard = ({
       { headers: { 'content-type': 'application/json' } },
     );
     const status = data.status === 201;
-    // set data to redux according to today or tomorrow ....
     if (status) {
       const actualDate = new Date(data.data.quest.dueDate);
       const addTaskFunc = async params => {
@@ -62,7 +43,6 @@ export const editCard = ({
           };
 
           tasks.map(task => {
-            console.log(task);
             if (task.done) {
               dashBoard.done.push(task);
             } else {
@@ -84,16 +64,6 @@ export const editCard = ({
         }
       };
       addTaskFunc(state.user.nickname);
-      // const dispatchByDate = () => {
-      //   if (helpers.isToday(actualDate)) {
-      //     dispatch(dashBoardSlice.actions.updateToday(data.data.quest));
-      //   } else if (helpers.isTomorrow(actualDate)) {
-      //     dispatch(dashBoardSlice.actions.updateTomorrow(data.data.quest));
-      //   } else {
-      //     dispatch(dashBoardSlice.actions.updateAllRest(data.data.quest));
-      //   }
-      // };
-      // dispatchByDate();
     }
   } catch (err) {
     console.log(err);

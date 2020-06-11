@@ -1,27 +1,9 @@
-import axios from "axios";
-import * as helpers from "../../helpers/functions";
-import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
+import axios from 'axios';
+import { isToday, isTomorrow } from '../../helpers/functions';
+import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
 
 const getData = data => data.data.data;
 const getTasks = data => getData(data).tasks;
-
-const isToday = date => {
-  const today = new Date();
-  return (
-    date.getDate() === today.getDate() &&
-    date.getMonth() === today.getMonth() &&
-    date.getFullYear() === today.getFullYear()
-  );
-};
-
-const isTomorrow = date => {
-  const today = new Date();
-  return (
-    date.getDate() === today.getDate() + 1 &&
-    date.getMonth() === today.getMonth() &&
-    date.getFullYear() === today.getFullYear()
-  );
-};
 
 export const editChellangeStatus = _id => async (dispatch, getState) => {
   const state = getState();
@@ -33,19 +15,18 @@ export const editChellangeStatus = _id => async (dispatch, getState) => {
     const data = await axios.put(
       `https://questify.goit.co.ua/api/challenges/${_id}`,
       JSON.stringify(body),
-      { headers: { "content-type": "application/json" } },
+      { headers: { 'content-type': 'application/json' } },
     );
 
     const status = data.status === 201;
 
-    // set data to redux according to today or tomorrow ....
     if (status) {
       const actualDate = new Date(data.data.challenge.dueDate);
       const addTaskFunc = async params => {
         try {
           const userName = { nickname: params };
           const data = await axios.post(
-            "https://questify.goit.co.ua/api/login",
+            'https://questify.goit.co.ua/api/login',
             userName,
           );
           const status = data.status === 200;

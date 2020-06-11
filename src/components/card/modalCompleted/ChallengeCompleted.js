@@ -5,12 +5,12 @@ const ChallengeCompleted = ({ name, handelDoneChellange }) => {
   return (
     <div>
       <div>
-        <h2 className={styles.challengeCompletedModalTitle}>
-          Completed:
+        <div className={styles.challengeCompletedTitleWrap}>
+          <h2 className={styles.challengeCompletedModalTitle}>Completed:</h2>
           <span className={styles.challengeCompletedModalTitleSpan}>
             {name}
           </span>
-        </h2>
+        </div>
         <div>
           <div className={styles.challengeCompletedModalImage}></div>
           <button

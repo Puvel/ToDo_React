@@ -32,7 +32,8 @@
   padding: 2px 2px;
   width: 22px;
   border-radius: 50%;
-  background-color: gray;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
 }
 
 .headerUserInfo__listItem_FullNickname {
@@ -65,6 +66,10 @@
   border: none;
   background-color: inherit;
   width: 20px;
+}
+
+.buttonLogOut:hover .buttonSvg {
+  fill: #7b8aa4;
 }
 
 @media (min-width: 768px) {
@@ -107,8 +112,14 @@
   }
 
   .headerUserInfo__listItem_SliceNickname {
-    padding: 6px 6px;
+    /* padding: 7px 6px 6px; */
     width: 35px;
+    padding: 10px 5px 8px;
+    /* height: 35px; */
+    font-family: "HelveticaNeueCyr";
+    color: white;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 0 auto;
   }
 
   .headerUserInfo__listItem_FullNickname {

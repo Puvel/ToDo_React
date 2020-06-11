@@ -63,6 +63,10 @@
   border: none;
 }
 
+.todosSectionList > li:not(:last-child) {
+  margin-bottom: 22px;
+}
+
 @media (min-width: 768px) {
   .todosSectionContainer {
     margin: 0 auto;

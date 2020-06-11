@@ -1,18 +1,18 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteCard } from "../../../redux/dashBoard/cardOperation";
-import styles from "./modalCard.module.css";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteCard } from '../../../redux/dashBoard/cardOperation';
+import styles from './modalCard.module.css';
 
-const ModalCard = ({ state, setDelete }) => {
+const ModalCard = ({ title, cancel, delite }) => {
   const dispatch = useDispatch();
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <h3 className={styles.modalText}>Delete this Quest?</h3>
+        <h3 className={styles.modalText}>{title}</h3>
         <div className={styles.modalBtnContainer}>
           <button
             onClick={() => {
-              setDelete(false);
+              cancel();
             }}
             className={styles.modalCencelBtn}>
             CANCEL
@@ -20,7 +20,7 @@ const ModalCard = ({ state, setDelete }) => {
           <span className={styles.modalSpan}>|</span>
           <button
             onClick={() => {
-              dispatch(deleteCard(state));
+              delite();
             }}
             className={styles.modalDelBtn}>
             DELETE
