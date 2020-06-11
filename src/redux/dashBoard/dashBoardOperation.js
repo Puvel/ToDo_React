@@ -39,17 +39,17 @@ export const updateTasks = params => async (dispatch, getState) => {
       challange: [],
     };
 
-    const reduxTasks = tasks.map(task => {
+    tasks.map(task => {
       if (task.done) {
-        dashBoard.done.push(task);
+        return dashBoard.done.push(task);
       } else {
         const actualDate = new Date(task.dueDate);
         if (isToday(actualDate)) {
-          dashBoard.today.push(task);
+          return dashBoard.today.push(task);
         } else if (isTomorrow(actualDate)) {
-          dashBoard.tomorrow.push(task);
+          return dashBoard.tomorrow.push(task);
         } else {
-          dashBoard.allRest.push(task);
+          return dashBoard.allRest.push(task);
         }
       }
     });
@@ -94,15 +94,15 @@ export const createTask = params => async (dispatch, getState) => {
 
           tasks.map(task => {
             if (task.done) {
-              dashBoard.done.push(task);
+              return dashBoard.done.push(task);
             } else {
               const actualDate = new Date(task.dueDate);
               if (isToday(actualDate)) {
-                dashBoard.today.push(task);
+                return dashBoard.today.push(task);
               } else if (isTomorrow(actualDate)) {
-                dashBoard.tomorrow.push(task);
+                return dashBoard.tomorrow.push(task);
               } else {
-                dashBoard.allRest.push(task);
+                return dashBoard.allRest.push(task);
               }
             }
           });

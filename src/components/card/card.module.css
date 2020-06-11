@@ -10,6 +10,23 @@
   position: relative;
 }
 
+.cardMainActive {
+  background: rgb(255, 255, 255);
+  width: 285px;
+  height: 264px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  list-style: none;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  position: relative;
+  border: #00d7ff solid 2px;
+}
+
+/* .cardMain:not(:last-child) {
+  margin-bottom: 22px;
+} */
+
 .indicatorSeparator {
   height: 22px;
   width: 1px;
@@ -68,7 +85,7 @@
   padding-right: 20px;
   outline: none;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid #00d7ff;
   margin: 0 auto;
   display: block;
   margin-bottom: 16px;
@@ -78,8 +95,7 @@
   font-size: 15px;
   font-family: 'HelveticaNeueCyr';
   color: rgb(185, 195, 200);
-  line-height: 0.733;
-  padding-right: 5px;
+  padding-right: 10px;
 }
 .textCont {
   display: flex;
@@ -87,6 +103,27 @@
   align-items: baseline;
   margin-bottom: 45px;
 }
+
+.textCont > div > input {
+  border: none;
+  font-size: 15px;
+  font-family: 'HelveticaNeueCyr';
+  color: rgb(185, 195, 200);
+  line-height: 0.733;
+  padding-right: 5px;
+  width: 130px;
+  border: none;
+}
+
+.textCont > div > input:focus {
+  outline-offset: none;
+  outline: none;
+}
+.cardFireIcon {
+  position: relative;
+  top: 2px;
+}
+
 .cardSelect {
   margin-left: 15px;
   width: 120px;

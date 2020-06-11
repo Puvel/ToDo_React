@@ -7,7 +7,7 @@ import { dashBoardSlice } from '../../redux/dashBoard/dashBoardReducer';
 import { createTask } from '../../redux/dashBoard/dashBoardOperation';
 import styles from './card.module.css';
 import chroma from 'chroma-js';
-import fireIcon from '../../assets/images/icons/fire.svg';
+import calendarIcon from '../../assets/images/icons/calendar.svg';
 import TimeLab from './TimeLab';
 import ModalCard from './modalCard/ModalCard';
 import ModalCompleted from './modalCompleted/ModalCompleted';
@@ -28,13 +28,6 @@ const categoryOptions = [
   { value: 'social', label: 'Social', color: 'rgb(233, 192, 203)' },
   { value: 'sport', label: 'Sport', color: 'rgb(186, 241, 229)' },
 ];
-
-const convert = str => {
-  const date = new Date(str),
-    mnth = ('0' + (date.getMonth() + 1)).slice(-2),
-    day = ('0' + date.getDate()).slice(-2);
-  return [date.getFullYear(), mnth, day].join('-');
-};
 
 const getGroup = {
   stuff: categoryOptions[0],
@@ -65,10 +58,6 @@ const getDifficulty = {
   Easy: colourOptions[2],
   Normal: colourOptions[1],
   Hard: colourOptions[0],
-};
-
-const pad = value => {
-  return String(value).padStart(2, '0');
 };
 
 export const Card = ({
@@ -112,10 +101,6 @@ export const Card = ({
     setState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleContinue = async () => {
-    dispatch(editCard(state));
-  };
-
   const handleDateChange = e => {
     const date = e._d;
     const actualDate = new Date(date).toISOString();
@@ -145,22 +130,18 @@ export const Card = ({
 
   const hours = new Date(dueDate);
 
-  const date =
-    hours.getFullYear() +
-    '-' +
-    pad(hours.getMonth() + 1) +
-    '-' +
-    pad(hours.getDate());
-  const actualHours = hours.getHours();
-  const actualMinutes = hours.getMinutes();
   return (
-    <li className={styles.cardMain}>
+    <li className={onEdit ? styles.cardMainActive : styles.cardMain}>
       {isDone ? (
         <ModalCompleted
           handleContinuteDone={handleContinuteDone}
           name={state.name}
         />
       ) : (
+        // <div>
+        //   <button onClick={() => setDone(!isDone)}>not yet</button>
+        //   <button onClick={handleContinuteDone}>continute</button>
+        // </div>
         <>
           <div>
             <div className={styles.hardLevelContainer}>
@@ -205,8 +186,9 @@ export const Card = ({
             <div className={styles.textCont}>
               {onEdit ? (
                 <Datetime
+                  className={styles.dateStyle}
                   dateFormat="DD-MM-YYYY"
-                  timeFormat="HH-mm"
+                  timeFormat="HH:mm"
                   onChange={handleDateChange}
                   defaultValue={hours}
                   closeOnSelect
@@ -218,10 +200,10 @@ export const Card = ({
 
               <img
                 className={styles.cardFireIcon}
-                src={fireIcon}
+                src={calendarIcon}
                 width="16px"
                 height="auto"
-                alt="star"
+                alt="calendar"
               />
             </div>
             <div className={styles.bottomWrap}>

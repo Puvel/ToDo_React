@@ -55,7 +55,7 @@ export const dashBoardSlice = createSlice({
     },
 
     abortTaskCreate: (state, { payload }) => {
-      const today = state.today.shift(0);
+      state.today.shift(0);
       return state;
     },
     updateAllRest: (state, { payload }) => {

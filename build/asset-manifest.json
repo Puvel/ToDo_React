@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c3b8a627.chunk.css",
+    "main.js": "/static/js/main.0898702e.chunk.js",
+    "main.js.map": "/static/js/main.0898702e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.632f146d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.632f146d.js.map",
+    "static/js/2.63bd0cd0.chunk.js": "/static/js/2.63bd0cd0.chunk.js",
+    "static/js/2.63bd0cd0.chunk.js.map": "/static/js/2.63bd0cd0.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.4544197d2566b0759fb44f42c5b35a00.js": "/precache-manifest.4544197d2566b0759fb44f42c5b35a00.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.c3b8a627.chunk.css.map": "/static/css/main.c3b8a627.chunk.css.map",
+    "static/js/2.63bd0cd0.chunk.js.LICENSE.txt": "/static/js/2.63bd0cd0.chunk.js.LICENSE.txt",
+    "static/media/login.module.css": "/static/media/tablet-bg.4dd85aab.png",
+    "static/media/fonts.css": "/static/media/HelveticaNeueCyr-UltraLightItalic.eddbfc23.ttf",
+    "static/media/challengeCompleted.module.css": "/static/media/award-1-01.3e717467.svg",
+    "static/media/modalCompleted.module.css": "/static/media/award-2-02.04ae73d9.svg",
+    "static/media/calendar.svg": "/static/media/calendar.735daf9b.svg",
+    "static/media/header.module.css": "/static/media/trophy.04e1df92.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.632f146d.js",
+    "static/js/2.63bd0cd0.chunk.js",
+    "static/css/main.c3b8a627.chunk.css",
+    "static/js/main.0898702e.chunk.js"
+  ]
+}

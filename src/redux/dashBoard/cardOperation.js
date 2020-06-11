@@ -24,7 +24,6 @@ export const editCard = ({
     );
     const status = data.status === 201;
     if (status) {
-      const actualDate = new Date(data.data.quest.dueDate);
       const addTaskFunc = async params => {
         try {
           const userName = { nickname: params };
@@ -44,15 +43,15 @@ export const editCard = ({
 
           tasks.map(task => {
             if (task.done) {
-              dashBoard.done.push(task);
+              return dashBoard.done.push(task);
             } else {
               const actualDate = new Date(task.dueDate);
               if (isToday(actualDate)) {
-                dashBoard.today.push(task);
+                return dashBoard.today.push(task);
               } else if (isTomorrow(actualDate)) {
-                dashBoard.tomorrow.push(task);
+                return dashBoard.tomorrow.push(task);
               } else {
-                dashBoard.allRest.push(task);
+                return dashBoard.allRest.push(task);
               }
             }
           });

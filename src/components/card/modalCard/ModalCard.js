@@ -1,10 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteCard } from '../../../redux/dashBoard/cardOperation';
 import styles from './modalCard.module.css';
 
 const ModalCard = ({ title, cancel, delite }) => {
-  const dispatch = useDispatch();
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
