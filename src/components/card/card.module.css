@@ -10,10 +10,6 @@
   position: relative;
 }
 
-.cardMain:not(:last-child) {
-  margin-bottom: 22px;
-}
-
 .indicatorSeparator {
   height: 22px;
   width: 1px;
@@ -201,21 +197,6 @@
 .cardSelectCategory > div:nth-child(3) {
   border: 1px solid hsl(0, 0%, 80%);
 }
-/* .hardLevelContainer div {
-  border: none;
-  box-shadow: none;
-}
-.hardLevelContainer > div > div {
-  padding: 0;
-  margin: 0;
-}
-.hardLevelContainer > div > div:nth-child(3) > div {
-  padding: 0;
-  margin: 0;
-}
-.cardSelectCategory div {
-  border: none;
-} */
 
 .challengeCardMain {
   border-radius: 10px;
@@ -230,6 +211,7 @@
   padding-bottom: 24px;
   position: relative;
 }
+
 .challengeHardLevelContainer {
   display: flex;
   justify-content: space-between;

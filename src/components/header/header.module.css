@@ -113,6 +113,8 @@
   .headerUserInfo__listItem_SliceNickname {
     padding: 6px 6px;
     width: 35px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   .headerUserInfo__listItem_FullNickname {
@@ -122,6 +124,9 @@
     margin-left: 16px;
     display: block;
   }
+}
+.headerUserInfo__listItem_FullNickname::first-letter {
+  text-transform: uppercase;
 }
 
 @media (min-width: 1280px) {

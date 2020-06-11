@@ -23,7 +23,7 @@ const colourOptions = [
   { value: 'Easy', label: 'Easy', color: '#00875A' },
 ];
 const categoryOptions = [
-  { value: 'family', label: 'Family', color: 'rgb(248,229,212)' },
+  { value: 'stuff', label: 'Stuff', color: 'rgb(248,229,212)' },
   { value: 'learning', label: 'Learning', color: 'rgb(252, 242, 183)' },
   { value: 'health', label: 'Health', color: 'rgb(204, 247, 255)' },
   { value: 'work', label: 'Work', color: 'rgb(211, 246, 206)' },
@@ -31,10 +31,9 @@ const categoryOptions = [
   { value: 'productivity', label: 'Productivity', color: 'rgb(209, 225, 246)' },
   { value: 'social', label: 'Social', color: 'rgb(233, 192, 203)' },
   { value: 'sport', label: 'Sport', color: 'rgb(186, 241, 229)' },
-  { value: 'Stuff', label: 'Stuff', color: 'rgb(32, 76, 229)' },
 ];
 const getGroup = {
-  family: categoryOptions[0],
+  stuff: categoryOptions[0],
   learning: categoryOptions[1],
   health: categoryOptions[2],
   work: categoryOptions[3],
@@ -42,7 +41,6 @@ const getGroup = {
   productivity: categoryOptions[5],
   social: categoryOptions[6],
   sport: categoryOptions[7],
-  stuff: categoryOptions[8],
 };
 const dot = (color = '#ccc') => ({
   alignItems: 'center',
