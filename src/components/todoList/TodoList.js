@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./todoList.module.css";
-import { Card } from "../card/Card";
-import { ChallengeCard } from "../card/ChallengeCard";
+import React from 'react';
+import styles from './todoList.module.css';
+import { Card } from '../card/Card';
+import { ChallengeCard } from '../card/ChallengeCard';
 
 const TodoList = ({
-  title = "",
+  title = '',
   tasks = [],
   visible = null,
   isShow = true,

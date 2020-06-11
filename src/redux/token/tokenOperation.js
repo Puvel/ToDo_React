@@ -1,7 +1,7 @@
-import axios from "axios";
-import { tokenSlice } from "./tokenReducer";
-import { userSlice } from "../user/userReducer";
-import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
+import axios from 'axios';
+import { tokenSlice } from './tokenReducer';
+import { userSlice } from '../user/userReducer';
+import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
 
 const getData = data => data.data.data;
 const getUser = data => getData(data).user;
@@ -29,7 +29,7 @@ const isTomorrow = date => {
 export const signInUser = params => async (dispatch, getState) => {
   try {
     const data = await axios.post(
-      "https://questify.goit.co.ua/api/login",
+      'https://questify.goit.co.ua/api/login',
       params,
     );
     const status = data.status === 200;
@@ -60,7 +60,6 @@ export const signInUser = params => async (dispatch, getState) => {
     });
     if (status) {
       dispatch(userSlice.actions.getUser(nickName));
-      console.log(data.data.message);
       dispatch(tokenSlice.actions.getToken({ token: tokenValue }));
       dispatch(dashBoardSlice.actions.getTasks(dashBoard));
     }
