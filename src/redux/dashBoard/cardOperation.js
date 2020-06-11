@@ -34,8 +34,6 @@ export const editCard = ({
   isPriority,
 }) => async (dispatch, getState) => {
   const state = getState();
-  console.log(state.user.nickname);
-  console.log(done, _id);
   try {
     const data = await axios.put(
       `https://questify.goit.co.ua/api/quests/${_id}`,
@@ -108,6 +106,80 @@ export const deleteCard = ({ _id }) => async (dispatch, getState) => {
   try {
     const data = await axios.delete(
       `https://questify.goit.co.ua/api/quests/${_id}`,
+    );
+    const status = data.status === 201;
+    if (status) {
+      dispatch(updateTasks(nickname));
+      // dispatch(dashBoardSlice.actions.deleteTask(_id));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteChellangeCard = ({ _id, userId }) => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const nickname = state.user.nickname;
+  const body = {
+    updateFields: { challengeSendToUser: false },
+    userId,
+  };
+  try {
+    const data = await axios.put(
+      `https://questify.goit.co.ua/api/challenges/${_id}`,
+      body,
+    );
+    const status = data.status === 201;
+
+    if (status) {
+      dispatch(updateTasks(nickname));
+      // dispatch(dashBoardSlice.actions.deleteTask(_id));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateChellangeCard = ({
+  _id,
+  userId,
+  difficulty,
+  dueDate,
+}) => async (dispatch, getState) => {
+  const state = getState();
+  const nickname = state.user.nickname;
+  const body = {
+    updateFields: { challengeSendToUser: true, difficulty, dueDate },
+    userId,
+  };
+  try {
+    const data = await axios.put(
+      `https://questify.goit.co.ua/api/challenges/${_id}`,
+      body,
+    );
+    const status = data.status === 201;
+    if (status) {
+      dispatch(updateTasks(nickname));
+      // dispatch(dashBoardSlice.actions.deleteTask(_id));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const completeChellange = ({ _id, userId }) => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const nickname = state.user.nickname;
+  try {
+    const data = await axios.put(
+      `https://questify.goit.co.ua/api/challenges/${_id}`,
+      { updateFields: { challengeSendToUser: true, done: true }, userId },
     );
     const status = data.status === 201;
     if (status) {

@@ -11,11 +11,6 @@
   justify-content: space-between;
   align-items: center;
 }
-/* .cardStarIcon:hover {
-
-    filter: invert(0.3) sepia(0) saturate(1) hue-rotate(0deg) brightness(1);
-    opacity: 0.3;
-   } */
 
 .headerLogo {
   width: 68px;
@@ -55,6 +50,15 @@
   box-shadow: 0px 6px 13px 0px rgba(121, 215, 254, 0.43);
   background-color: #00daff;
 }
+.headerChellengeDead {
+  height: 22px;
+  width: 22px;
+  background-image: url(../../assets/images/icons/trophy.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: #3e4e6c;
+}
 
 .buttonLogOut {
   transform: rotate(180deg);
@@ -71,6 +75,12 @@
   }
 
   .headerChellenge {
+    margin-right: 32px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .headerChellengeDead {
     margin-right: 32px;
     width: 35px;
     height: 35px;

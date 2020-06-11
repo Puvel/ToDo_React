@@ -3,13 +3,15 @@ import { useDispatch } from 'react-redux';
 import Datetime from 'react-datetime';
 import Select from 'react-select';
 import { editCard, deleteCard } from '../../redux/dashBoard/cardOperation';
+import { dashBoardSlice } from '../../redux/dashBoard/dashBoardReducer';
 import { createTask } from '../../redux/dashBoard/dashBoardOperation';
 import styles from './card.module.css';
 import chroma from 'chroma-js';
 import starIcon from '../../assets/images/icons/star.svg';
 import fireIcon from '../../assets/images/icons/fire.svg';
 import TimeLab from './TimeLab';
-
+import ModalCard from './modalCard/ModalCard';
+import ModalCompleted from './modalCompleted/ModalCompleted';
 
 const colourOptions = [
   { value: 'Hard', label: 'Hard', color: '#DB0837' },
@@ -17,16 +19,15 @@ const colourOptions = [
   { value: 'Easy', label: 'Easy', color: '#00875A' },
 ];
 const categoryOptions = [
-
-  { value: "stuff", label: "Stuff", color: "rgb(248,229,212)" },
-  { value: "learning", label: "Learning", color: "rgb(252, 242, 183)" },
-  { value: "health", label: "Health", color: "rgb(204, 247, 255)" },
-  { value: "work", label: "Work", color: "rgb(211, 246, 206)" },
-  { value: "leisure", label: "Leisure", color: "rgb(238, 216, 242)" },
-  { value: "productivity", label: "Productivity", color: "rgb(209, 225, 246)" },
-  { value: "social", label: "Social", color: "rgb(233, 192, 203)" },
-  { value: "sport", label: "Sport", color: "rgb(186, 241, 229)" },
-  { value: "Stuff", label: "Stuff", color: "rgb(32, 76, 229)" },
+  { value: 'family', label: 'Family', color: 'rgb(248,229,212)' },
+  { value: 'learning', label: 'Learning', color: 'rgb(252, 242, 183)' },
+  { value: 'health', label: 'Health', color: 'rgb(204, 247, 255)' },
+  { value: 'work', label: 'Work', color: 'rgb(211, 246, 206)' },
+  { value: 'leisure', label: 'Leisure', color: 'rgb(238, 216, 242)' },
+  { value: 'productivity', label: 'Productivity', color: 'rgb(209, 225, 246)' },
+  { value: 'social', label: 'Social', color: 'rgb(233, 192, 203)' },
+  { value: 'sport', label: 'Sport', color: 'rgb(186, 241, 229)' },
+  { value: 'Stuff', label: 'Stuff', color: 'rgb(32, 76, 229)' },
 ];
 
 const convert = str => {
@@ -97,6 +98,7 @@ export const Card = ({
   const [isDone, setDone] = useState(false);
   const dispatch = useDispatch();
   const [onEdit, setEdit] = useState(false);
+  const [onDelete, setDelete] = useState(false);
   const [state, setState] = useState({
     _id,
     dueDate,
@@ -114,7 +116,6 @@ export const Card = ({
 
   // CRUD FUNCTIONS
   const handleAddTask = () => {
-    console.log(state);
     onEdit && setEdit(!onEdit);
     dispatch(createTask(state));
   };
@@ -134,15 +135,12 @@ export const Card = ({
 
   const handleContinue = async () => {
     // setState(prev => ({ ...prev, done: true }));
-    console.log(state);
     dispatch(editCard(state));
   };
   const handleDateChange = e => {
     const date = e._d;
     const actualDate = new Date(date).toISOString();
-    console.log(actualDate);
     setState(prev => ({ ...prev, dueDate: actualDate }));
-    console.log(state);
   };
 
   const handleContinuteDone = async () => {
@@ -152,6 +150,10 @@ export const Card = ({
     // setState(prev => ({ ...prev, done: true }));
     dispatch(editCard({ ...state, done: true }));
     // setDone(!isDone);
+  };
+
+  const handleAbortStart = () => {
+    dispatch(dashBoardSlice.actions.abortTaskCreate());
   };
 
   const hours = new Date(dueDate);
@@ -167,11 +169,15 @@ export const Card = ({
   return (
     <li className={styles.cardMain}>
       {isDone ? (
-        <div>
-          <button onClick={() => setDone(!isDone)}>not yet</button>
-          <button onClick={handleContinuteDone}>continute</button>
-        </div>
+        <ModalCompleted
+          handleContinuteDone={handleContinuteDone}
+          name={state.name}
+        />
       ) : (
+        // <div>
+        //   <button onClick={() => setDone(!isDone)}>not yet</button>
+        //   <button onClick={handleContinuteDone}>continute</button>
+        // </div>
         <>
           <div>
             <div className={styles.hardLevelContainer}>
@@ -214,8 +220,11 @@ export const Card = ({
             />
             <div className={styles.textCont}>
               {onEdit ? (
-                // <input name="data" value={date} onChange={() => {}} />
-                <Datetime onChange={handleDateChange} defaultValue={hours} />
+                <Datetime
+                  onChange={handleDateChange}
+                  defaultValue={hours}
+                  closeOnSelect
+                />
               ) : (
                 <TimeLab date={dueDate} />
               )}
@@ -240,104 +249,111 @@ export const Card = ({
                 onChange={handleSelectChange('group')}
               />
             </div>
-
-            {onCreate ? (
-              <div className={styles.imgCont}>
-                <button className={styles.btnDel}>
-                  <svg
-                    className={styles.delite}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                    <path d="M0 0h24v24H0z" fill="none" />
-                  </svg>
-                </button>
-                <span className=" css-1okebmr-indicatorSeparator"></span>
-                <button className={styles.btn} onClick={handleAddTask}>
-                  START
-                </button>
-              </div>
-            ) : (
-              <div>
-                {onEdit ? (
-                  <button
-                    className={`${styles.Btn} ${styles.saveBtn}`}
-                    onClick={(onCreate = false) => {
-                      setEdit(!onEdit);
-                      dispatch(editCard(state));
-                    }}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24">
-                      <path fill="none" d="M0 0h24v24H0V0z" />
-                      <path
-                        className={styles.save}
+            {!done && (
+              <>
+                {onCreate ? (
+                  <div className={styles.imgCont}>
+                    <button
+                      onClick={handleAbortStart}
+                      className={styles.btnDel}>
+                      <svg
+                        className={styles.delite}
+                        xmlns="http://www.w3.org/2000/svg"
                         fill="none"
-                        d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"
-                      />
-                    </svg>
-                  </button>
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                      </svg>
+                    </button>
+                    <span className=" css-1okebmr-indicatorSeparator"></span>
+                    <button className={styles.btn} onClick={handleAddTask}>
+                      START
+                    </button>
+                  </div>
                 ) : (
-                  <button
-                    className={`${styles.Btn} ${styles.editBtn}`}
-                    onClick={() => {
-                      setEdit(!onEdit);
-                    }}>
-                    <svg
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24">
-                      <title>pencil</title>
-                      <path
-                        className={styles.edit}
-                        fill="none"
-                        d="M21 6.879l-3.879-3.879c-0.293-0.293-0.678-0.439-1.061-0.439-0.384 0-0.767 0.146-1.060 0.439l-10.939 10.939c-0.293 0.293-0.558 0.727-0.75 1.188-0.192 0.463-0.311 0.959-0.311 1.373v4.5h4.5c0.414 0 0.908-0.119 1.371-0.311s0.896-0.457 1.189-0.75l10.94-10.939c0.293-0.293 0.439-0.678 0.439-1.061 0-0.384-0.146-0.767-0.439-1.060zM5.768 15.061l8.293-8.293 1.232 1.232-8.293 8.293-1.232-1.232zM7.5 19h-1.5l-1-1v-1.5c0-0.077 0.033-0.305 0.158-0.605 0.010-0.020 2.967 2.938 2.967 2.938-0.322 0.134-0.548 0.167-0.625 0.167zM8.939 18.232l-1.232-1.232 8.293-8.293 1.232 1.232-8.293 8.293zM17.939 9.232l-3.172-3.172 1.293-1.293 3.17 3.172-1.291 1.293z"></path>
-                    </svg>
-                  </button>
-                )}
+                  <div>
+                    {onEdit ? (
+                      <button
+                        className={`${styles.Btn} ${styles.saveBtn}`}
+                        onClick={(onCreate = false) => {
+                          setEdit(!onEdit);
+                          dispatch(editCard(state));
+                        }}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24">
+                          <path fill="none" d="M0 0h24v24H0V0z" />
+                          <path
+                            className={styles.save}
+                            fill="none"
+                            d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"
+                          />
+                        </svg>
+                      </button>
+                    ) : (
+                      <button
+                        className={`${styles.Btn} ${styles.editBtn}`}
+                        onClick={() => {
+                          setEdit(!onEdit);
+                        }}>
+                        <svg
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24">
+                          <title>pencil</title>
+                          <path
+                            className={styles.edit}
+                            fill="none"
+                            d="M21 6.879l-3.879-3.879c-0.293-0.293-0.678-0.439-1.061-0.439-0.384 0-0.767 0.146-1.060 0.439l-10.939 10.939c-0.293 0.293-0.558 0.727-0.75 1.188-0.192 0.463-0.311 0.959-0.311 1.373v4.5h4.5c0.414 0 0.908-0.119 1.371-0.311s0.896-0.457 1.189-0.75l10.94-10.939c0.293-0.293 0.439-0.678 0.439-1.061 0-0.384-0.146-0.767-0.439-1.060zM5.768 15.061l8.293-8.293 1.232 1.232-8.293 8.293-1.232-1.232zM7.5 19h-1.5l-1-1v-1.5c0-0.077 0.033-0.305 0.158-0.605 0.010-0.020 2.967 2.938 2.967 2.938-0.322 0.134-0.548 0.167-0.625 0.167zM8.939 18.232l-1.232-1.232 8.293-8.293 1.232 1.232-8.293 8.293zM17.939 9.232l-3.172-3.172 1.293-1.293 3.17 3.172-1.291 1.293z"></path>
+                        </svg>
+                      </button>
+                    )}
 
-                <button
-                  className={`${styles.Btn} ${styles.deliteBtn}`}
-                  onClick={() => {
-                    dispatch(deleteCard(state));
-                  }}>
-                  <svg
-                    className={styles.delit}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                    <path d="M0 0h24v24H0z" fill="none" />
-                  </svg>
-                </button>
-                <button
-                  className={`${styles.Btn} ${styles.doneBtn}`}
-                  onClick={() => setDone(!isDone)}>
-                  <svg
-                    className={styles.done}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24">
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
-                  </svg>
-                </button>
-              </div>
+                    <button
+                      className={`${styles.Btn} ${styles.deliteBtn}`}
+                      onClick={() => {
+                        setDelete(true);
+                        // dispatch(deleteCard(state));
+                      }}>
+                      <svg
+                        className={styles.delit}
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                      </svg>
+                    </button>
+                    <button
+                      className={`${styles.Btn} ${styles.doneBtn}`}
+                      onClick={() => setDone(!isDone)}>
+                      <svg
+                        className={styles.done}
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </>
       )}
+      {onDelete && <ModalCard state={state} setDelete={setDelete} />}
     </li>
   );
 };

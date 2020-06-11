@@ -1,12 +1,12 @@
-import React from "react";
-import styles from "./login.module.css";
+import React from 'react';
+import styles from './login.module.css';
 
 const Login = ({ handleSubmit, handleChange, state }) => {
   return (
     <div className={styles.wrapper}>
       <div className={`container ${styles.column}`}>
         <section className={styles.loginWrapper}>
-          <div>
+          <div className={styles.overlayBG}>
             <h1 className={styles.title}>Questifiy</h1>
             <p className={styles.ladingText}>
               Questify will turn your life into a thrilling game full of amazing

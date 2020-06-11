@@ -23,7 +23,6 @@ const isTomorrow = date => {
 };
 
 export const updateTasks = params => async (dispatch, getState) => {
-  console.log('dasdasdasdasdasdas');
   try {
     const userName = { nickname: params };
     const data = await axios.post(
@@ -41,7 +40,6 @@ export const updateTasks = params => async (dispatch, getState) => {
     };
 
     const reduxTasks = tasks.map(task => {
-      console.log(task);
       if (task.done) {
         dashBoard.done.push(task);
       } else {
@@ -65,20 +63,17 @@ export const updateTasks = params => async (dispatch, getState) => {
 
 export const createTask = params => async (dispatch, getState) => {
   const state = getState();
-  console.log(state.user.nickname);
+
   const userId = state.token;
   const newTaskData = { ...params, userId };
   delete newTaskData._id;
-  console.log(newTaskData);
 
   try {
-    console.log('we are here');
     const data = await axios.post(
       'https://questify.goit.co.ua/api/quests',
       newTaskData,
     );
     const status = data.status === 201;
-    console.log(status);
     if (status) {
       const addTaskFunc = async params => {
         try {
@@ -98,7 +93,6 @@ export const createTask = params => async (dispatch, getState) => {
           };
 
           tasks.map(task => {
-            console.log(task);
             if (task.done) {
               dashBoard.done.push(task);
             } else {
@@ -121,7 +115,6 @@ export const createTask = params => async (dispatch, getState) => {
       };
       addTaskFunc(state.user.nickname);
     }
-    console.log(data);
   } catch (err) {
     console.log(err);
   }

@@ -7,6 +7,7 @@
   list-style: none;
   padding-top: 24px;
   padding-bottom: 24px;
+  position: relative;
 }
 
 .cardMain:not(:last-child) {
@@ -45,6 +46,7 @@
   outline: none;
   margin: 0 auto;
   display: block;
+  background-color: white;
 }
 
 .inputTitleEdit {
@@ -73,7 +75,6 @@
   color: rgb(185, 195, 200);
   line-height: 0.733;
   padding-right: 5px;
-  
 }
 .textCont {
   display: flex;
@@ -170,8 +171,7 @@
   background-color: transparent;
 }
 .kek > div > div > div:last-child > span {
-   display: none; 
-  position: absolute; 
+  display: none;
 }
 .kek > div > div > div:last-child > div > svg {
   display: none;
@@ -254,7 +254,13 @@ challengeHardLevelContainer:hover {
 .cardSelectCategory > div:nth-child(3) {
   border: 1px solid hsl(0, 0%, 80%);
 }
-
+.viewTrophy {
+  fill: #00d7ff;
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 6px 8px rgba(0, 215, 255, 0.5));
+  margin-top: 10px;
+}
 .challenge {
   font-size: 13px;
   font-family: 'HelveticaNeueCyr';
@@ -356,41 +362,3 @@ challengeHardLevelContainer:hover {
 .doneBtn:hover .done {
   fill: #439945;
 }
- .btn{
-     border:none;
-     background-color: transparent;
-     font-size: 15px;
-     font-family: "HelveticaNeueCyr";
-     color: rgb(0, 215, 255);
-     text-transform: uppercase;
-    line-height: 0.733;
-    padding-right: 25px;
-    padding-left: 20px;
- }
- .btnDel{
-     background-color:transparent;
-     border: none;
-     padding-right: 12px;
- }
-  .sel{
-      width:160px
-  }
-  .sel > div > div > div > div:last-child {
-    background-color: transparent;
-  }
-  .sel > div > div > div:last-child > span {
-    display: none; 
-  }
-  .sel > div > div > div:last-child > div > svg {
-    display: none; 
-  }
- .delite{
-    fill: #da0837;
-    border:rgb(32, 57, 90);
-    background-color:rgb(32, 57, 90) ;
-
- }
- .delite:hover{
-    fill: #aa273b;
- }
-

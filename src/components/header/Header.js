@@ -7,6 +7,8 @@ import logOutSvg from '../../assets/images/icons/logout.svg';
 
 function Header({ handleLogOut }) {
   const nickname = useSelector(state => state.user.nickname);
+  const activeTrophy = useSelector(state => state.isNewChellange);
+  console.log(activeTrophy);
   const nickNameSlice = [...nickname[0].toUpperCase()];
 
   return (
@@ -103,7 +105,10 @@ function Header({ handleLogOut }) {
                 </p>
               </li>
             </ul>
-            <div className={style.headerChellenge}>
+            <div
+              className={
+                activeTrophy ? style.headerChellenge : style.headerChellengeDead
+              }>
               {/* <p className = { style.headerChellengeHover}>You've got new challenge</p> */}
               {/* <img
                 className={style.headerChellengeSvg}
