@@ -184,7 +184,7 @@ export const ChallengeCard = ({
               {!done && (
                 <>
                   {challengeSendToUser ? (
-                    <div>
+                    <div className={styles.btnWrap}>
                       {onEdit ? (
                         <button
                           className={`${styles.Btn} ${styles.saveBtn}`}
@@ -297,8 +297,6 @@ export const ChallengeCard = ({
 };
 const colourStyles = {
   control: styles => ({ ...styles, color: 'red' }),
-  // option: (styles, { data,isSelected}) =>
-  //   ({ ...styles, ...dot(data.color) }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     const color = chroma(data.color);
     return {

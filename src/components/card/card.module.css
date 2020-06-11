@@ -113,11 +113,13 @@
   padding-right: 5px;
   width: 130px;
   border: none;
+  background-color: transparent;
 }
 
 .textCont > div > input:focus {
   outline-offset: none;
   outline: none;
+  background-color: transparent;
 }
 .cardFireIcon {
   position: relative;

@@ -14,7 +14,7 @@ export const useRoute = token => {
   }
   return (
     <Switch>
-      <Route exact path="/dashboard" component={DashboardPage} />
+      <Route path="/dashboard" component={DashboardPage} />
       <Redirect to="/dashboard" />
     </Switch>
   );

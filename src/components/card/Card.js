@@ -12,6 +12,7 @@ import TimeLab from './TimeLab';
 import ModalCard from './modalCard/ModalCard';
 import ModalCompleted from './modalCompleted/ModalCompleted';
 import Tooltip from '@material-ui/core/Tooltip';
+import { newTaskSlice } from '../../redux/dashBoard/newTaskReduser';
 
 const colourOptions = [
   { value: 'Hard', label: 'Hard', color: '#DB0837' },
@@ -138,10 +139,6 @@ export const Card = ({
           name={state.name}
         />
       ) : (
-        // <div>
-        //   <button onClick={() => setDone(!isDone)}>not yet</button>
-        //   <button onClick={handleContinuteDone}>continute</button>
-        // </div>
         <>
           <div>
             <div className={styles.hardLevelContainer}>
@@ -240,7 +237,12 @@ export const Card = ({
                         </svg>
                       </button>
                       <span className={styles.indicatorSeparator}></span>
-                      <button className={styles.btn} onClick={handleAddTask}>
+                      <button
+                        className={styles.btn}
+                        onClick={() => {
+                          handleAddTask();
+                          dispatch(newTaskSlice.actions.startTask());
+                        }}>
                         START
                       </button>
                     </div>

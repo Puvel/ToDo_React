@@ -7,6 +7,7 @@ import { dashBoardSlice } from '../redux/dashBoard/dashBoardReducer';
 import Header from '../components/header/Header';
 import TodoList from '../components/todoList/TodoList';
 import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
+import { v4 as uuidv4 } from 'uuid';
 
 const DashboardPage = () => {
   const today = useSelector(state => state.dashboard.today);
@@ -33,7 +34,7 @@ const DashboardPage = () => {
         name: 'Create an account',
         updatedAt: '2020-06-07T09:35:56.563Z',
         userId: '5edcb4fc94684d2asdasd131fe0f00',
-        _id: '5edcb4fc94684d2asdasd131fe0f00dsdghdghdhgadassd',
+        _id: uuidv4(),
         __v: 0,
         onCreate: true,
       }),
