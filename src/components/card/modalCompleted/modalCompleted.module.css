@@ -10,7 +10,7 @@
   text-align: center;
   font-family: 'HelveticaNeueCyr', Arial, Helvetica, sans-serif;
   padding: 0px;
-  margin: 0px auto;
+  margin: 0px;
   text-align: center;
   text-transform: uppercase;
   font-size: 15px;
@@ -20,11 +20,14 @@
   line-height: 1;
   letter-spacing: 0.9px;
   color: rgb(40, 40, 40);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 5px;
+}
+
+.completeTitleWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .completeModalTitleSpan {
@@ -37,6 +40,7 @@
   font-size: 12px;
   font-stretch: normal;
   font-weight: 600;
+  padding-right: 20px;
 }
 
 .completeModalText {

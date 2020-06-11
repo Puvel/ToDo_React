@@ -67,6 +67,10 @@
   width: 20px;
 }
 
+.buttonLogOut:hover .buttonSvg {
+  fill: #7b8aa4;
+}
+
 @media (min-width: 768px) {
   .buttonLogOut {
     align-self: center;

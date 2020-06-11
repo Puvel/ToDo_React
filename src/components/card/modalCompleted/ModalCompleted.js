@@ -5,10 +5,10 @@ const ModalCompleted = ({ name, handleContinuteDone }) => {
   return (
     <div>
       <div>
-        <h2 className={styles.completeModalTitle}>
-          Completed:
+        <div className={styles.completeTitleWrap}>
+          <h2 className={styles.completeModalTitle}>Completed:</h2>
           <span className={styles.completeModalTitleSpan}>{name}</span>
-        </h2>
+        </div>
         <div>
           <div className={styles.completeModalImage}></div>
           <button

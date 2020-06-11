@@ -8,8 +8,6 @@ import Header from '../components/header/Header';
 import TodoList from '../components/todoList/TodoList';
 import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 
-const today = new Date().toISOString();
-
 const DashboardPage = () => {
   const today = useSelector(state => state.dashboard.today);
   const tomorrow = useSelector(state => state.dashboard.tomorrow);
@@ -23,8 +21,6 @@ const DashboardPage = () => {
   };
 
   const handleCreate = () => {
-    console.log('creating a task');
-
     dispatch(
       dashBoardSlice.actions.createTask({
         createdAt: '2020-06-07T09:35:56.563Z',

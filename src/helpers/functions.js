@@ -15,5 +15,3 @@ export const isTomorrow = date => {
     date.getFullYear() === today.getFullYear()
   );
 };
-
-// export default { isToday, isTomorrow };
