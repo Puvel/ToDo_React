@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { tokenSlice } from '../redux/token/tokenReducer';
@@ -8,14 +8,28 @@ import Header from '../components/header/Header';
 import TodoList from '../components/todoList/TodoList';
 import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 import { v4 as uuidv4 } from 'uuid';
+import Progress from '../components/loader/Progress';
+
+const callFakeAPI = delay =>
+  new Promise(resolve => {
+    setTimeout(resolve, delay);
+  });
 
 const DashboardPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const today = useSelector(state => state.dashboard.today);
   const tomorrow = useSelector(state => state.dashboard.tomorrow);
   const allRest = useSelector(state => state.dashboard.allRest);
   const done = useSelector(state => state.dashboard.done);
   const [isShow, setIsShow] = useState(true);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      await callFakeAPI(500);
+      setIsLoading(false);
+    })();
+  }, []);
 
   const handleLogOut = () => {
     dispatch(tokenSlice.actions.clearToken());
@@ -43,6 +57,7 @@ const DashboardPage = () => {
 
   return (
     <>
+      <Progress isAnimating={isLoading} />
       <Header handleLogOut={handleLogOut} />
       <TodoList title="TODAY" tasks={today} />
       <TodoList title="TOMORROW" tasks={tomorrow} />

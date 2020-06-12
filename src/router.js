@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { LoginPage } from './pages/LoginPage';
-import DashboardPage from './pages/DashboardPage';
+
+const LoginPage = lazy(() =>
+  import('./pages/LoginPage' /* webpackChunkName: "LoginPage" */),
+);
+
+const DashboardPage = lazy(() =>
+  import('./pages/DashboardPage' /* webpackChunkName: "DashboardPage" */),
+);
 
 export const useRoute = token => {
   if (!token) {
     return (
-      <Switch>
-        <Route exact path="/" component={LoginPage} />
-        <Redirect to="/" />
-      </Switch>
+      <Suspense fallback={null}>
+        <Switch>
+          <Route exact path="/" component={LoginPage} />
+          <Redirect to="/" />
+        </Switch>
+      </Suspense>
     );
   }
   return (
-    <Switch>
-      <Route path="/dashboard" component={DashboardPage} />
-      <Redirect to="/dashboard" />
-    </Switch>
+    <Suspense fallback={null}>
+      <Switch>
+        <Route path="/dashboard" component={DashboardPage} />
+        <Redirect to="/dashboard" />
+      </Switch>
+    </Suspense>
   );
 };

@@ -14,7 +14,6 @@ const CreateQuestButton = ({ handleCreate }) => {
         type="button"
         onClick={() => {
           if (!isNewTask) {
-            console.log('false');
             return;
           } else {
             handleCreate();
