@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './modalCard.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { newTaskSlice } from '../../../redux/dashBoard/newTaskReduser';
 
 const ModalCard = ({ title, cancel, delite }) => {
+  const isNewTask = useSelector(state => state.isNewTask);
+  const dispatch = useDispatch();
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
@@ -17,6 +21,9 @@ const ModalCard = ({ title, cancel, delite }) => {
           <span className={styles.modalSpan}>|</span>
           <button
             onClick={() => {
+              if (!isNewTask) {
+                dispatch(newTaskSlice.actions.startTask());
+              }
               delite();
             }}
             className={styles.modalDelBtn}>
