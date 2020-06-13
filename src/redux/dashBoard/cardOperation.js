@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { isToday, isTomorrow } from '../../helpers/functions';
-import { dashBoardSlice } from '../dashBoard/dashBoardReducer';
-import { updateTasks } from '../dashBoard/dashBoardOperation';
+import axios from "axios";
+import { isToday, isTomorrow } from "../../helpers/functions";
+import { dashBoardSlice } from "../dashBoard/dashBoardReducer";
+import { updateTasks } from "../dashBoard/dashBoardOperation";
 
 const getData = data => data.data.data;
 const getTasks = data => getData(data).tasks;
@@ -15,12 +15,14 @@ export const editCard = ({
   done,
   isPriority,
 }) => async (dispatch, getState) => {
+  // const fart = dueDate.toISOString();
+  console.log(done);
   const state = getState();
   try {
     const data = await axios.put(
       `https://questify.goit.co.ua/api/quests/${_id}`,
       { dueDate, name, difficulty, group, done, isPriority },
-      { headers: { 'content-type': 'application/json' } },
+      { headers: { "content-type": "application/json" } },
     );
     const status = data.status === 201;
     if (status) {
@@ -29,7 +31,7 @@ export const editCard = ({
         try {
           const userName = { nickname: params };
           const data = await axios.post(
-            'https://questify.goit.co.ua/api/login',
+            "https://questify.goit.co.ua/api/login",
             userName,
           );
           const status = data.status === 200;
