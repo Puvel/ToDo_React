@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
+import { deleteChellangeCard } from "../redux/dashBoard/cardOperation";
+import { newCardSlice } from "../redux/dashBoard/newCardReducer";
 import { editCard } from "../redux/dashBoard/cardOperation";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { tokenSlice } from "../redux/token/tokenReducer";
@@ -18,12 +20,17 @@ const DashboardPage = () => {
   const done = useSelector(state => state.dashboard.done);
   const [isShow, setIsShow] = useState(true);
   const dispatch = useDispatch();
+  const allTasks = [...today, ...tomorrow, ...allRest];
+  const onCreate = useSelector(state => state.onCreate);
 
   const handleLogOut = () => {
     dispatch(tokenSlice.actions.clearToken());
   };
 
   const handleCreate = () => {
+    if(!onCreate){
+      return
+    }
     dispatch(
       dashBoardSlice.actions.createTask({
         createdAt: "2020-06-07T09:35:56.563Z",
@@ -41,6 +48,9 @@ const DashboardPage = () => {
         onCreate: true,
       }),
     );
+
+    // cancel create
+    dispatch(newCardSlice.actions.createTask());
   };
 
   const onDragEnd = (result, columns, setColumns) => {
@@ -55,7 +65,18 @@ const DashboardPage = () => {
           const today = new Date();
           const time = new Date(today);
           const _id = result.draggableId;
-          if (!result.destination) {
+          const isChellange = allTasks.find(item => {
+            return item._id === result.draggableId;
+          });
+          if (isChellange && result.destination.droppableId === "DONE") {
+            console.log("chellange");
+            const userId = isChellange.userId;
+            dispatch(deleteChellangeCard({ _id, userId }));
+
+            return;
+          }
+
+          if (result.destination.droppableId === result.source.droppableId) {
             return;
           }
           if (result.destination.droppableId === "DONE") {
@@ -64,23 +85,56 @@ const DashboardPage = () => {
             dispatch(editCard({ _id, done }));
             return;
           }
-          if (result.source.droppableId === "TODAY") {
-            if (result.destination.droppableId === "TODAY") {
-              console.log("nothing todo");
-              return;
-            } else if (result.destination.droppableId === "TOMORROW") {
-              const dueDate = time.setDate(time.getDate() + 1);
-              dispatch(editCard({ dueDate, _id }));
-            }
-          } else if (result.source.droppableId === "TOMORROW") {
-            if (result.destination.droppableId === "TOMORROW") {
-              console.log("nothing todo");
-              return;
-            } else if (result.destination.droppableId === "TODAY") {
-              const dueDate = time.setDate(time.getDate());
-              dispatch(editCard({ dueDate, _id }));
-            }
+          // TODAY TOMORROW
+          if (
+            result.source.droppableId === "TODAY" &&
+            result.destination.droppableId === "TOMORROW"
+          ) {
+            const dueDate = time.setDate(time.getDate() + 1);
+            dispatch(editCard({ dueDate, _id }));
           }
+          // TODAY ALL THE REST
+          if (
+            result.source.droppableId === "TODAY" &&
+            result.destination.droppableId === "ALL THE REST"
+          ) {
+            const dueDate = time.setDate(time.getDate() + 2);
+            dispatch(editCard({ dueDate, _id }));
+          }
+          // TOMORROW TODAY
+          if (
+            result.source.droppableId === "TOMORROW" &&
+            result.destination.droppableId === "TODAY"
+          ) {
+            const dueDate = time.setDate(time.getDate());
+            dispatch(editCard({ dueDate, _id }));
+          }
+          // TOMORROW ALL THE REST
+          if (
+            result.source.droppableId === "TOMORROW" &&
+            result.destination.droppableId === "ALL THE REST"
+          ) {
+            const dueDate = time.setDate(time.getDate() + 3);
+            dispatch(editCard({ dueDate, _id }));
+          }
+          //  ALL THE REST TODAY
+          if (
+            result.source.droppableId === "ALL THE REST" &&
+            result.destination.droppableId === "TODAY"
+          ) {
+            const dueDate = time.setDate(time.getDate());
+            dispatch(editCard({ dueDate, _id }));
+          }
+
+          //  ALL THE REST TOMORROW
+          if (
+            result.source.droppableId === "ALL THE REST" &&
+            result.destination.droppableId === "TOMORROW"
+          ) {
+            const dueDate = time.setDate(time.getDate() + 1);
+            dispatch(editCard({ dueDate, _id }));
+          }
+
           console.log(result.source.droppableId);
           console.log(result.destination.droppableId);
         }}>

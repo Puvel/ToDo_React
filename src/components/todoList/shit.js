@@ -31,32 +31,27 @@ const TodoList = ({
         {isShow && (
           <Droppable droppableId={columnId} key={columnId}>
             {(provided, snapshot) => {
-              if (!tasks.length) {
+              if (tasks.length > 0) {
                 return (
-                  <h3
-                    className={styles.notifyText}
+                  <ul
+                    className={styles.todosSectionList}
                     {...provided.droppableProps}
                     ref={provided.innerRef}>
-                    No quests or challenges
-                  </h3>
+                    {tasks.map((task, idx) => {
+                      if (task.isQuest) {
+                        return <Card key={task._id} task={task} idx={idx} />;
+                      } else {
+                        return (
+                          <ChallengeCard key={task._id} task={task} idx={idx} />
+                        );
+                      }
+                    })}
+                    {provided.placeholder}
+                  </ul>
                 );
               }
               return (
-                <ul
-                  className={styles.todosSectionList}
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}>
-                  {tasks.map((task, idx) => {
-                    if (task.isQuest) {
-                      return <Card key={task._id} task={task} idx={idx} />;
-                    } else {
-                      return (
-                        <ChallengeCard key={task._id} task={task} idx={idx} />
-                      );
-                    }
-                  })}
-                  {provided.placeholder}
-                </ul>
+                <h3 className={styles.notifyText}>No quests or challenges</h3>
               );
             }}
           </Droppable>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Datetime from "react-datetime";
 import Select from "react-select";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Draggable } from "react-beautiful-dnd";
 import { editCard, deleteCard } from "../../redux/dashBoard/cardOperation";
 import { dashBoardSlice } from "../../redux/dashBoard/dashBoardReducer";
 import { createTask } from "../../redux/dashBoard/dashBoardOperation";
+import { newCardSlice } from "../../redux/dashBoard/newCardReducer";
 import styles from "./card.module.css";
 import chroma from "chroma-js";
 import fireIcon from "../../assets/images/icons/fire.svg";
@@ -79,6 +80,7 @@ export const Card = ({
   idx,
 }) => {
   const [isDone, setDone] = useState(false);
+  const onCreateNew = useSelector(state => state.onCreate);
   const dispatch = useDispatch();
   const [onEdit, setEdit] = useState(false);
   const [onDelete, setDelete] = useState(false);
@@ -99,8 +101,13 @@ export const Card = ({
 
   // CRUD FUNCTIONS
   const handleAddTask = () => {
+    if (onCreateNew) {
+      return;
+    }
+
     onEdit && setEdit(!onEdit);
     dispatch(createTask(state));
+    dispatch(newCardSlice.actions.createTask());
   };
   // edit card function
   const priorityToogle = async () => {

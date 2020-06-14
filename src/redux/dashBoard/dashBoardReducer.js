@@ -71,5 +71,6 @@ export const dashBoardSlice = createSlice({
         allRest: actualAllRest,
       };
     },
+    
   },
 });
